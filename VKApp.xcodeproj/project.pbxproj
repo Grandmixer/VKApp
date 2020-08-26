@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		FFF4E36924F2A99F008310B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF4E36824F2A99F008310B6 /* AppDelegate.swift */; };
 		FFF4E36B24F2A99F008310B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF4E36A24F2A99F008310B6 /* SceneDelegate.swift */; };
-		FFF4E36D24F2A99F008310B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF4E36C24F2A99F008310B6 /* ViewController.swift */; };
+		FFF4E36D24F2A99F008310B6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF4E36C24F2A99F008310B6 /* LoginViewController.swift */; };
 		FFF4E37024F2A99F008310B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF4E36E24F2A99F008310B6 /* Main.storyboard */; };
 		FFF4E37224F2A9A2008310B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF4E37124F2A9A2008310B6 /* Assets.xcassets */; };
 		FFF4E37524F2A9A2008310B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF4E37324F2A9A2008310B6 /* LaunchScreen.storyboard */; };
+		FFF4E37D24F2E3EA008310B6 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF4E37C24F2E3EA008310B6 /* NextViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FFF4E36524F2A99F008310B6 /* VKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF4E36824F2A99F008310B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF4E36A24F2A99F008310B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FFF4E36C24F2A99F008310B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FFF4E36C24F2A99F008310B6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FFF4E36F24F2A99F008310B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FFF4E37124F2A9A2008310B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFF4E37424F2A9A2008310B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFF4E37624F2A9A2008310B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFF4E37C24F2E3EA008310B6 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				FFF4E36824F2A99F008310B6 /* AppDelegate.swift */,
 				FFF4E36A24F2A99F008310B6 /* SceneDelegate.swift */,
-				FFF4E36C24F2A99F008310B6 /* ViewController.swift */,
+				FFF4E36C24F2A99F008310B6 /* LoginViewController.swift */,
+				FFF4E37C24F2E3EA008310B6 /* NextViewController.swift */,
 				FFF4E36E24F2A99F008310B6 /* Main.storyboard */,
 				FFF4E37124F2A9A2008310B6 /* Assets.xcassets */,
 				FFF4E37324F2A9A2008310B6 /* LaunchScreen.storyboard */,
@@ -138,7 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFF4E36D24F2A99F008310B6 /* ViewController.swift in Sources */,
+				FFF4E36D24F2A99F008310B6 /* LoginViewController.swift in Sources */,
+				FFF4E37D24F2E3EA008310B6 /* NextViewController.swift in Sources */,
 				FFF4E36924F2A99F008310B6 /* AppDelegate.swift in Sources */,
 				FFF4E36B24F2A99F008310B6 /* SceneDelegate.swift in Sources */,
 			);
