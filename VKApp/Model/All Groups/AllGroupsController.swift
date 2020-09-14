@@ -21,14 +21,17 @@ class AllGroupsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Получаем ячейку из пула
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! AllGroupsCell
-        //Получаем группу для конкретной строки
-        let group = groups[indexPath.row]
-        
-        //Устанавливаем имя группы в надпись в ячейке
-        cell.groupName.text = group
-        
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? AllGroupsCell {
+            //Получаем группу для конкретной строки
+            let group = groups[indexPath.row]
+            
+            //Устанавливаем имя группы в надпись в ячейке
+            cell.config(name: group)
+            
+            return cell
+        } else {
+            fatalError()
+        }
     }
 }
 

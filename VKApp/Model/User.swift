@@ -2,12 +2,17 @@
 //  User.swift
 //  VKApp
 //
-//  Created by Желанов Александр Валентинович on 27.08.2020.
+//  Created by Желанов Александр Валентинович on 08.09.2020.
 //  Copyright © 2020 OlwaStd. All rights reserved.
 //
 
 import Foundation
 
-class User {
-    //заготовка
+struct User {
+    let name: String
+    //Место для расширения класса
+    
+    func getNameFirstLetter() -> String {
+        return String(name.first ?? "z")
+    }
 }
