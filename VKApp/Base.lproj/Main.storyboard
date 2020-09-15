@@ -181,7 +181,7 @@
         <!--Мои друзья-->
         <scene sceneID="o2z-fD-N3T">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bX3-b8-aod" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bX3-b8-aod" customClass="CustomNavigationController" customModule="VKApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Мои друзья" image="person.circle" catalog="system" id="z8f-EL-9da"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LcY-5y-h08">

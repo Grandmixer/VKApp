@@ -32,14 +32,11 @@ import UIKit
     }
     
     private func setupView() {
-        let image = UIImage(systemName: "suit.heart")
-        let imageFilled = UIImage(systemName: "suit.heart.fill")
-        
         button = UIButton(type: .custom)
         button.setTitle(String(likesCount), for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
-        button.setImage(image, for: .normal)
-        button.setImage(imageFilled, for: .selected)
+        button.setImage(UIImage(systemName: "suit.heart"), for: .normal)
+        button.setImage(UIImage(systemName: "suit.heart.fill"), for: .selected)
         button.addTarget(self, action: #selector(likePhoto(_ :)), for: .touchUpInside)
         
         self.addSubview(button)
