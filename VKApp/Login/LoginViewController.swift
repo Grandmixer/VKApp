@@ -18,9 +18,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         //Жест нажатия
-        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        let tapKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         //Присваиваем жест UIScrollView
-        scrollView.addGestureRecognizer(hideKeyboardGesture)
+        scrollView.addGestureRecognizer(tapKeyboardGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,7 +80,8 @@ class LoginViewController: UIViewController {
         if login == "admin" && password == "123" {
             return true
         } else {
-            return false
+            return true
+            //return false
         }
     }
     
