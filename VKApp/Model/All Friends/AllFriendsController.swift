@@ -77,11 +77,11 @@ class AllFriendsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //Получаем ячейку из пула
-        if let cellHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendCellHeader") as? AllFriendsCellHeader {
+        //Получаем header из пула
+        if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendCellHeader") as? AllFriendsCellHeader {
             //Устанавливаем свойства хедера
-            cellHeader.config(title: sectionsList[section].headerTitle, color: UIColor.blue.withAlphaComponent(0.5))
-            return cellHeader
+            header.config(title: sectionsList[section].headerTitle, color: UIColor.blue.withAlphaComponent(0.5))
+            return header
         } else {
             fatalError()
         }

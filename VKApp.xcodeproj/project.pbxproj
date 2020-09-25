@@ -23,6 +23,10 @@
 		FF6F2D13250646CF003EC1E6 /* AllFriendsCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6F2D12250646CF003EC1E6 /* AllFriendsCellHeader.swift */; };
 		FF7B11B325027D3C00CAE117 /* LikedIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B11B225027D3C00CAE117 /* LikedIt.swift */; };
 		FFCD295F250F547900C7E83F /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD295E250F547900C7E83F /* PhotoCell.swift */; };
+		FFCD29612510E1D300C7E83F /* CustomPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD29602510E1D300C7E83F /* CustomPushAnimator.swift */; };
+		FFCD29632510EC9C00C7E83F /* CustomPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD29622510EC9C00C7E83F /* CustomPopAnimator.swift */; };
+		FFCD296525111DE900C7E83F /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD296425111DE900C7E83F /* CustomNavigationController.swift */; };
+		FFCD29672511503500C7E83F /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD29662511503500C7E83F /* CustomInteractiveTransition.swift */; };
 		FFEFC7082504004700C95BA5 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEFC7072504004700C95BA5 /* PhotoViewController.swift */; };
 		FFF4E36924F2A99F008310B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF4E36824F2A99F008310B6 /* AppDelegate.swift */; };
 		FFF4E36B24F2A99F008310B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF4E36A24F2A99F008310B6 /* SceneDelegate.swift */; };
@@ -49,6 +53,10 @@
 		FF6F2D12250646CF003EC1E6 /* AllFriendsCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsCellHeader.swift; sourceTree = "<group>"; };
 		FF7B11B225027D3C00CAE117 /* LikedIt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedIt.swift; sourceTree = "<group>"; };
 		FFCD295E250F547900C7E83F /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		FFCD29602510E1D300C7E83F /* CustomPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPushAnimator.swift; sourceTree = "<group>"; };
+		FFCD29622510EC9C00C7E83F /* CustomPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopAnimator.swift; sourceTree = "<group>"; };
+		FFCD296425111DE900C7E83F /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		FFCD29662511503500C7E83F /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		FFEFC7072504004700C95BA5 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FFF4E36524F2A99F008310B6 /* VKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF4E36824F2A99F008310B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,11 +122,8 @@
 				FF21428324F7CEFA000F4ED3 /* All Groups */,
 				FF21428D24F812F7000F4ED3 /* My Groups */,
 				FF300548250AD29C00B19AB2 /* News */,
-				FF242A8525077BC100116C38 /* User.swift */,
-				FF4F034125023CAE0022F310 /* AvatarView.swift */,
-				FF4F034325025FED0022F310 /* ShadowView.swift */,
-				FF7B11B225027D3C00CAE117 /* LikedIt.swift */,
-				FF6AC66C250D7E8000B95C75 /* LoadingAnimation.swift */,
+				FF35D7EC2511626D0093E0F3 /* Avatar */,
+				FF35D7ED251162910093E0F3 /* Controls */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -130,6 +135,36 @@
 				FF300549250AD2E700B19AB2 /* NewsCell.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		FF35D7EC2511626D0093E0F3 /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				FF4F034125023CAE0022F310 /* AvatarView.swift */,
+				FF4F034325025FED0022F310 /* ShadowView.swift */,
+			);
+			path = Avatar;
+			sourceTree = "<group>";
+		};
+		FF35D7ED251162910093E0F3 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				FF6AC66C250D7E8000B95C75 /* LoadingAnimation.swift */,
+				FF7B11B225027D3C00CAE117 /* LikedIt.swift */,
+				FF242A8525077BC100116C38 /* User.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		FF35D7EE251162B10093E0F3 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				FFCD296425111DE900C7E83F /* CustomNavigationController.swift */,
+				FFCD29662511503500C7E83F /* CustomInteractiveTransition.swift */,
+				FFCD29602510E1D300C7E83F /* CustomPushAnimator.swift */,
+				FFCD29622510EC9C00C7E83F /* CustomPopAnimator.swift */,
+			);
+			path = NavigationController;
 			sourceTree = "<group>";
 		};
 		FF63783F24F6F2E300838F45 /* All Friends */ = {
@@ -166,6 +201,7 @@
 				FFF4E36A24F2A99F008310B6 /* SceneDelegate.swift */,
 				FF242A8425077AF900116C38 /* Model */,
 				FF242A8325077A9600116C38 /* Login */,
+				FF35D7EE251162B10093E0F3 /* NavigationController */,
 				FFF4E36E24F2A99F008310B6 /* Main.storyboard */,
 				FFF4E37124F2A9A2008310B6 /* Assets.xcassets */,
 				FFF4E37324F2A9A2008310B6 /* LaunchScreen.storyboard */,
@@ -248,15 +284,19 @@
 				FF21428524F7CF38000F4ED3 /* AllGroupsController.swift in Sources */,
 				FF4F034225023CAE0022F310 /* AvatarView.swift in Sources */,
 				FF6F2D13250646CF003EC1E6 /* AllFriendsCellHeader.swift in Sources */,
+				FFCD29632510EC9C00C7E83F /* CustomPopAnimator.swift in Sources */,
 				FFF4E36D24F2A99F008310B6 /* LoginViewController.swift in Sources */,
 				FF63784324F6F39700838F45 /* AllFriendsCell.swift in Sources */,
+				FFCD296525111DE900C7E83F /* CustomNavigationController.swift in Sources */,
 				FF6AC66D250D7E8000B95C75 /* LoadingAnimation.swift in Sources */,
+				FFCD29672511503500C7E83F /* CustomInteractiveTransition.swift in Sources */,
 				FF63784124F6F38700838F45 /* AllFriendsController.swift in Sources */,
 				FF30054C250AD46700B19AB2 /* NewsController.swift in Sources */,
 				FF7B11B325027D3C00CAE117 /* LikedIt.swift in Sources */,
 				FF21428F24F8131C000F4ED3 /* MyGroupsController.swift in Sources */,
 				FF242A8625077BC100116C38 /* User.swift in Sources */,
 				FFF4E36924F2A99F008310B6 /* AppDelegate.swift in Sources */,
+				FFCD29612510E1D300C7E83F /* CustomPushAnimator.swift in Sources */,
 				FF2D624525098B7600E15F65 /* FriendsCellHeaderItem.swift in Sources */,
 				FFF4E36B24F2A99F008310B6 /* SceneDelegate.swift in Sources */,
 				FF4F034425025FED0022F310 /* ShadowView.swift in Sources */,

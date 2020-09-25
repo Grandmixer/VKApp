@@ -10,9 +10,9 @@ import UIKit
 
 @IBDesignable class Loading: UIControl {
     
-    let view1 = UIView()
-    let view2 = UIView()
-    let view3 = UIView()
+    let dot1View = UIView()
+    let dot2View = UIView()
+    let dot3View = UIView()
     weak var timer: Timer?
     
     
@@ -44,18 +44,18 @@ import UIKit
     
     func animateDotsOnce() {
         UIView.animate(withDuration: 0.5, delay: 0.0, animations: {
-            self.view1.alpha = 0.0
+            self.dot1View.alpha = 0.0
         }, completion: { _ in
             UIView.animate(withDuration: 0.5, delay: 0.0, animations: {
-                self.view2.alpha = 0.0
+                self.dot2View.alpha = 0.0
             }, completion: { _ in
                 UIView.animate(withDuration: 0.5, delay: 0.0, animations: {
-                    self.view3.alpha = 0.0
+                    self.dot3View.alpha = 0.0
                 }, completion: { _ in
                     UIView.animate(withDuration: 0.25, delay: 0.0, animations: {
-                        self.view1.alpha = 1.0
-                        self.view2.alpha = 1.0
-                        self.view3.alpha = 1.0
+                        self.dot1View.alpha = 1.0
+                        self.dot2View.alpha = 1.0
+                        self.dot3View.alpha = 1.0
                     })
                 })
             })
@@ -64,29 +64,29 @@ import UIKit
     
     func setupViews(rect: CGRect) {
         
-        addSubview(view1)
-        view1.frame = bounds.offsetBy(dx: 0, dy: 0)
-        view1.backgroundColor = .red
+        addSubview(dot1View)
+        dot1View.frame = bounds.offsetBy(dx: 0, dy: 0)
+        dot1View.backgroundColor = .red
         
         let maskLayer1 = CAShapeLayer()
         maskLayer1.path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: rect.width / 3.5, height: rect.width / 3.5)).cgPath
-        view1.layer.mask = maskLayer1
+        dot1View.layer.mask = maskLayer1
         
-        addSubview(view2)
-        view2.frame = bounds
-        view2.backgroundColor = .red
+        addSubview(dot2View)
+        dot2View.frame = bounds
+        dot2View.backgroundColor = .red
         
         let maskLayer2 = CAShapeLayer()
         maskLayer2.path = UIBezierPath(ovalIn: CGRect(x: rect.width / 3, y: 0, width: rect.width / 3.5, height: rect.width / 3.5)).cgPath
-        view2.layer.mask = maskLayer2
+        dot2View.layer.mask = maskLayer2
         
-        addSubview(view3)
-        view3.frame = bounds
-        view3.backgroundColor = .red
+        addSubview(dot3View)
+        dot3View.frame = bounds
+        dot3View.backgroundColor = .red
         
         let maskLayer3 = CAShapeLayer()
         maskLayer3.path = UIBezierPath(ovalIn: CGRect(x: rect.width * 2 / 3, y: 0, width: rect.width / 3.5, height: rect.width / 3.5)).cgPath
-        view3.layer.mask = maskLayer3
+        dot3View.layer.mask = maskLayer3
     }
     
 }
