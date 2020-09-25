@@ -6,11 +6,12 @@
 //  Copyright © 2020 OlwaStd. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct User {
     let name: String
-    //Место для расширения класса
+    let avatar: UIImage?
+    var gallery: [Photo]
     
     func getNameFirstLetter() -> String {
         return String(name.first ?? "z")

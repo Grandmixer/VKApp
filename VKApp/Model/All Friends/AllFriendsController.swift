@@ -9,46 +9,56 @@
 import UIKit
 
 class AllFriendsController: UITableViewController {
+    
     @IBOutlet weak var myFriendsSearchBar: UISearchBar!
     
     var searchActive: Bool = false
-    var friends = [User(name: "Arturo"),
-                  User(name: "Roberto"),
-                  User(name: "Alex"),
-                  User(name: "Ujin"),
-                  User(name: "Uriel")]
+    var friends = [User(name: "Arturo", avatar: UIImage(named: "BoyAvatar"), gallery: [Photo(image: UIImage(named: "BoyAvatar"), likesCount: 50, isUserLiked: false)]),
+                   User(name: "Roberto", avatar: UIImage(named: "BoyAvatar"), gallery: [Photo(image: UIImage(named: "BoyAvatar"), likesCount: 0, isUserLiked: false), Photo(image: UIImage(named: "GirlAvatar"), likesCount: 4, isUserLiked: true)]),
+                   User(name: "Alex", avatar: UIImage(named: "BoyAvatar"), gallery: [Photo(image: UIImage(named: "BoyAvatar"), likesCount: 5, isUserLiked: true)]),
+                   User(name: "Ujin", avatar: UIImage(named: "BoyAvatar"), gallery: [Photo(image: UIImage(named: "BoyAvatar"), likesCount: 15, isUserLiked: true)]),
+                   User(name: "Uriel", avatar: UIImage(named: "GirlAvatar"), gallery:[Photo(image: UIImage(named: "GirlAvatar"), likesCount: 17, isUserLiked: true)])]
+    var lastClickedFriend = 0
     var friendsFiltered: [User] = []
     var sectionsList: [FriendsCellHeaderItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Сортируем с начала загрузки, чтобы корректно сохранять индекс последнего нажатого друга
+        friends = friends.sorted { (u1, u2) -> Bool in
+            u1.name < u2.name
+        }
+        
         setupSearchBar()
         sectionsList = map(input: friends)
         
-        tableView.register(AllFriendsCellHeader.self, forHeaderFooterViewReuseIdentifier: "FriendCellHeader")
+        tableView.register(AllFriendsCellHeader.self, forHeaderFooterViewReuseIdentifier: "FriendHeader")
+        tableView.allowsSelection = true
     }
     
     private func map(input: [User]) -> [FriendsCellHeaderItem] {
-        let sortedUsers = input.sorted{ (u1, u2) -> Bool in
-            u1.name < u2.name
-        }
         var itemsList: [FriendsCellHeaderItem] = []
         
-        var previousLetter = sortedUsers.first?.getNameFirstLetter() ?? "A"
+        var previousLetter = input.first?.getNameFirstLetter() ?? "A"
         var usersList: [User] = []
+        var indiciesList: [Int] = []
         
-        for user in sortedUsers {
+        for (index, user) in input.enumerated() {
             let firstUserNameLetter = user.getNameFirstLetter()
             if firstUserNameLetter == previousLetter {
                 usersList.append(user)
+                indiciesList.append(index)
             } else {
-                itemsList.append(FriendsCellHeaderItem(headerTitle: previousLetter, users: usersList))
+                itemsList.append(FriendsCellHeaderItem(headerTitle: previousLetter, users: usersList, indicies: indiciesList))
                 usersList = [user]
+                indiciesList = [index]
                 previousLetter = firstUserNameLetter
             }
         }
-        itemsList.append(FriendsCellHeaderItem(headerTitle: previousLetter, users: usersList))
+        if usersList.count > 0 {
+            itemsList.append(FriendsCellHeaderItem(headerTitle: previousLetter, users: usersList, indicies: indiciesList))
+        }
         
         return itemsList
     }
@@ -60,10 +70,10 @@ class AllFriendsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Получаем ячейку из пула
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? AllFriendsCell {
-            //Получаем имя друга для конкретной строки
+            //Получаем объект друга для конкретной ячейки
             let friend = sectionsList[indexPath.section].users[indexPath.row]
             
-            //Устанавливаем имя друга в надпись ячейки
+            //Конфигурируем ячейку
             cell.config(friend: friend)
             
             return cell
@@ -78,9 +88,9 @@ class AllFriendsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         //Получаем header из пула
-        if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendCellHeader") as? AllFriendsCellHeader {
+        if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendHeader") as? AllFriendsCellHeader {
             //Устанавливаем свойства хедера
-            header.config(title: sectionsList[section].headerTitle, color: UIColor.blue.withAlphaComponent(0.5))
+            header.config(sectionItem: sectionsList[section])
             return header
         } else {
             fatalError()
@@ -126,3 +136,28 @@ extension AllFriendsController: UISearchBarDelegate {
         tableView.reloadData()
     }
 }
+
+extension AllFriendsController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? PhotoViewController {
+            if let cell = sender as? UITableViewCell {
+                if let indexPath = self.tableView.indexPath(for: cell) {
+                    destination.gallery = sectionsList[indexPath.section].users[indexPath.row].gallery
+                    lastClickedFriend = sectionsList[indexPath.section].indicies[indexPath.row]
+                }
+            }
+        }
+    }
+
+    @IBAction func exitFromPhoto(sender: UIStoryboardSegue) {
+        if let source = sender.source as? PhotoViewController {
+            friends[lastClickedFriend].gallery = source.gallery
+            print(friends[lastClickedFriend].name)
+            for element in friends[lastClickedFriend].gallery {
+                print(element)
+            }
+            sectionsList = map(input: friends)
+        }
+    }
+}
+

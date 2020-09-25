@@ -9,9 +9,16 @@
 import UIKit
 
 class PhotoViewController: UIViewController {
+    var gallery: [Photo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.isMovingFromParent {
+            performSegue(withIdentifier: "ExitFromPhoto", sender: self)
+        }
     }
 }
 
@@ -25,9 +32,11 @@ extension PhotoViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath)
-        
-        return cell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell {
+            cell.config(parentController: self)
+            
+            return cell
+        } else { fatalError() }
     }
 }
 

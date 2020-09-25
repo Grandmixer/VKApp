@@ -65,7 +65,7 @@ import UIKit
     func setupViews(rect: CGRect) {
         
         addSubview(dot1View)
-        dot1View.frame = bounds.offsetBy(dx: 0, dy: 0)
+        dot1View.frame = bounds
         dot1View.backgroundColor = .red
         
         let maskLayer1 = CAShapeLayer()

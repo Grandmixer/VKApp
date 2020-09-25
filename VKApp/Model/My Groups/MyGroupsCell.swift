@@ -11,8 +11,30 @@ import UIKit
 class MyGroupsCell: UITableViewCell {
     
     @IBOutlet weak var groupName: UILabel!
+    @IBOutlet weak var groupAvatar: UIImageView!
+    @IBOutlet weak var groupAvatarContainer: UIView!
     
-    func config(name: String) {
-        groupName.text = name
+    override func awakeFromNib() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.animateAvatar(_:)))
+        self.groupAvatarContainer.addGestureRecognizer(gesture)
+    }
+    
+    func config(group: Group) {
+        groupName.text = group.name
+        groupAvatar.image = group.avatar
+    }
+    
+    @objc
+    func animateAvatar(_ sender: UITapGestureRecognizer) {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0.7
+        animation.toValue = 1
+        animation.stiffness = 200
+        animation.mass = 4
+        animation.duration = 0.25
+        animation.beginTime = CACurrentMediaTime()
+        animation.fillMode = CAMediaTimingFillMode.backwards
+        
+        self.groupAvatarContainer.layer.add(animation, forKey: nil)
     }
 }

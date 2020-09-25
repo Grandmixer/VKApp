@@ -12,6 +12,7 @@ class AllFriendsCell: UITableViewCell {
         
     @IBOutlet weak var friendName: UILabel!
     @IBOutlet weak var friendAvatarContainer: UIView!
+    @IBOutlet weak var friendAvatar: UIImageView!
     
     override func awakeFromNib() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.animateAvatar(_:)))
@@ -20,6 +21,7 @@ class AllFriendsCell: UITableViewCell {
     
     func config(friend: User) {
         friendName.text = friend.name
+        friendAvatar.image = friend.avatar
     }
     
     @objc
@@ -34,6 +36,5 @@ class AllFriendsCell: UITableViewCell {
         animation.fillMode = CAMediaTimingFillMode.backwards
         
         self.friendAvatarContainer.layer.add(animation, forKey: nil)
-        //self.authButton.layer.add(animation, forKey: nil)
     }
 }
