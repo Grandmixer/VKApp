@@ -9,11 +9,19 @@
 import UIKit
 
 @IBDesignable class LikedIt: UIControl {
-
+    
+    var isLiked: Bool = false {
+        didSet {
+            button.isSelected = isLiked
+            button.tintColor = button.isSelected ? .red : .systemBlue
+            self.sendActions(for: .valueChanged)
+        }
+    }
     var likesCount: Int = 0 {
         didSet {
-            updateLikesCounter()
-            self.sendActions(for: .valueChanged)
+            UIView.transition(with: button, duration: 0.25, options: .transitionFlipFromLeft, animations: {
+                self.button.setTitle(String(self.likesCount), for: .normal)
+            })
         }
     }
     
@@ -33,12 +41,15 @@ import UIKit
     
     private func setupView() {
         button = UIButton(type: .custom)
+        
         button.setTitle(String(likesCount), for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(.red, for: .selected)
         button.setImage(UIImage(systemName: "suit.heart"), for: .normal)
-        button.setImage(UIImage(systemName: "suit.heart.fill"), for: .selected)
-        button.addTarget(self, action: #selector(likePhoto(_ :)), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "suit.heart.fill")?.withRenderingMode(.alwaysTemplate), for: .selected)
         
+        button.addTarget(self, action: #selector(likePhoto(_ :)), for: .touchUpInside)
+
         self.addSubview(button)
         
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -48,19 +59,13 @@ import UIKit
         button.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor).isActive = true
     }
     
-    private func updateLikesCounter() {
-        UIView.transition(with: button, duration: 0.25, options: .transitionFlipFromLeft, animations: {
-            self.button.setTitle(String(self.likesCount), for: .normal)
-        })
-    }
-    
     @objc private func likePhoto(_ sender: UIButton) {
         if !sender.isSelected {
             self.likesCount += 1
-            sender.isSelected.toggle()
+            self.isLiked = true
         } else {
             self.likesCount -= 1
-            sender.isSelected.toggle()
+            self.isLiked = false 
         }
     }
 }

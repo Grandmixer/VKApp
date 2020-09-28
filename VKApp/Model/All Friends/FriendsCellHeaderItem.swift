@@ -11,4 +11,5 @@ import Foundation
 struct FriendsCellHeaderItem {
     let headerTitle: String
     var users: [User]
+    var indicies: [Int]
 }
