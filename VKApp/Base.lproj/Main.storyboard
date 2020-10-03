@@ -63,9 +63,18 @@
                                                     <color key="titleColor" systemColor="tableCellGroupedBackgroundColor"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="w5L-je-kcg" kind="show" id="No0-CN-PWd"/>
+                                                    <segue destination="w5L-je-kcg" kind="show" identifier="SuccessLogin" id="No0-CN-PWd"/>
                                                 </connections>
                                             </button>
+                                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khK-u0-6M2">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <wkWebViewConfiguration key="configuration">
+                                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                    <wkPreferences key="preferences"/>
+                                                </wkWebViewConfiguration>
+                                            </wkWebView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="FxF-16-DU2" firstAttribute="leading" secondItem="Xqz-tb-KJy" secondAttribute="leading" constant="20" id="0mO-rX-OwB"/>
@@ -119,8 +128,9 @@
                     <navigationItem key="navigationItem" title="Login ViewController" id="t80-7Q-o5i"/>
                     <connections>
                         <outlet property="loginTextField" destination="9eY-yP-Jo3" id="Lcn-0a-gqh"/>
-                        <outlet property="passwordTextField" destination="Bcf-0q-35F" id="FFl-c7-Euu"/>
+                        <outlet property="passwordTextField" destination="khK-u0-6M2" id="pxa-Sz-70R"/>
                         <outlet property="scrollView" destination="PLq-Lw-tbv" id="tzB-bJ-kLU"/>
+                        <outlet property="webview" destination="khK-u0-6M2" id="wSl-xj-T44"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -363,20 +373,20 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="jwM-re-SW6" customClass="AllFriendsCell" customModule="VKApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="53"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="53.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jwM-re-SW6" id="V3X-zr-KJS">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="53.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFh-cK-qIv">
-                                            <rect key="frame" x="90" y="16" width="284" height="21"/>
+                                            <rect key="frame" x="90" y="16" width="284" height="21.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcN-hs-8Pl">
-                                            <rect key="frame" x="20" y="1.6666666666666679" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="2" width="50" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Umv-9w-mPY" customClass="ShadowView" customModule="VKApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="-1.3333333333333321" width="50" height="50"/>
@@ -553,20 +563,20 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="OSb-62-yPl" customClass="AllGroupsCell" customModule="VKApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="53.333332061767578"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="52.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OSb-62-yPl" id="7U5-cs-9Rf">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="53.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="52.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOC-ch-XRT">
-                                            <rect key="frame" x="90" y="15.999999999999998" width="284" height="21.333333333333329"/>
+                                            <rect key="frame" x="90" y="16" width="284" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IQE-da-XFK" userLabel="Search Group Avatar Container">
-                                            <rect key="frame" x="20" y="1.6666666666666679" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="1.3333333333333321" width="50" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5H-MV-lvk" customClass="ShadowView" customModule="VKApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -665,20 +675,20 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyGroupCell" id="ij3-XO-cAO" customClass="MyGroupsCell" customModule="VKApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="53"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="53.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ij3-XO-cAO" id="C1m-bT-ydD">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="53.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gF9-de-umn">
-                                            <rect key="frame" x="90" y="16" width="284" height="21"/>
+                                            <rect key="frame" x="90" y="16" width="284" height="21.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHP-lD-7wz" userLabel="Group Avatar Container">
-                                            <rect key="frame" x="20" y="1.6666666666666679" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="2" width="50" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7m-Q1-8bT" customClass="ShadowView" customModule="VKApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>

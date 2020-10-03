@@ -25,6 +25,13 @@ class AllFriendsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let friendsService = FriendsService()
+        friendsService.loadFriendsList()
+        let photosService = PhotosService()
+        photosService.loadPhotosList()
+        let groupsService = GroupsService()
+        groupsService.loadGroupsList()
+        
         //Сортируем с начала загрузки, чтобы корректно сохранять индекс последнего нажатого друга
         friends = friends.sorted { (u1, u2) -> Bool in
             u1.name < u2.name
