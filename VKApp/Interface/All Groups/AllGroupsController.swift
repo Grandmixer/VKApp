@@ -13,15 +13,15 @@ class AllGroupsController: UITableViewController {
     @IBOutlet weak var allGroupsSearchBar: UISearchBar!
     
     var searchActive: Bool = false
-    var groups = [Group(name: "CatLovers", avatar: UIImage(named: "GroupAvatar"), index: 0),
+    /*var groups = [Group(name: "CatLovers", avatar: UIImage(named: "GroupAvatar"), index: 0),
                   Group(name: "2ch.hk", avatar: UIImage(named: "GroupAvatar"), index: 1),
                   Group(name: "Memes", avatar: UIImage(named: "GroupAvatar"), index: 2),
-                  Group(name: "BlackLivesMatter", avatar: UIImage(named: "GroupAvatar"), index: 3)]
+                  Group(name: "BlackLivesMatter", avatar: UIImage(named: "GroupAvatar"), index: 3)]*/
     var groupsFiltered: [Group] = []
     var sectionsList: [GroupsCellHeaderItem] = []
     
     override func viewDidLoad() {
-        groups = groups.sorted { (u1, u2) -> Bool in
+        /*groups = groups.sorted { (u1, u2) -> Bool in
             u1.name < u2.name
         }
         
@@ -29,7 +29,7 @@ class AllGroupsController: UITableViewController {
         sectionsList = map(input: groups)
         
         tableView.register(AllGroupsCellHeader.self, forHeaderFooterViewReuseIdentifier: "GroupsHeader")
-        tableView.allowsSelection = true
+        tableView.allowsSelection = true*/
     }
     
     private func map(input: [Group]) -> [GroupsCellHeaderItem] {
@@ -117,7 +117,7 @@ extension AllGroupsController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        groupsFiltered = groups.filter({ $0.name.contains(searchText) })
+        /*groupsFiltered = groups.filter({ $0.name.contains(searchText) })
         if groupsFiltered.count == 0 {
             searchActive = false
             sectionsList = map(input: groups)
@@ -125,7 +125,7 @@ extension AllGroupsController: UISearchBarDelegate {
             searchActive = true
             sectionsList = map(input: groupsFiltered)
         }
-        tableView.reloadData()
+        tableView.reloadData()*/
     }
 }
 

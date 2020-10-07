@@ -8,9 +8,9 @@
 
 import Foundation
 
-class GroupsService {
+class GroupsService: UrlService {
     
-    func loadGroupsList() {
+    func loadGroupsList(completion: @escaping (GroupsResult) -> Void) {
         //Конфигурация по умолчанию
         let configuration = URLSessionConfiguration.default
         //Собственная сессия
@@ -28,18 +28,11 @@ class GroupsService {
         urlConstructor.path = "/method/groups.get"
         //Параметры для запроса
         urlConstructor.queryItems = [
+            URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "access_token", value: "\(token)"),
             URLQueryItem(name: "v", value: "5.124")
         ]
         
-        //Задача для запуска
-        let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
-            //Преобразуем полученные данные в json
-            let json = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-            //Выводим в консоль
-            print(json)
-        }
-        //Запускаем задачу
-        task.resume()
+        doTask(session, urlConstructor.url!, parcingType: GroupsResult.self, completion: completion)
     }
 }

@@ -17,10 +17,10 @@ class PhotoCell: UICollectionViewCell {
     
     var currentPhoto: Int = 0 {
         didSet {
-            if let photoController = viewController as? PhotoViewController {
+            /*if let photoController = viewController as? PhotoViewController {
                 likePhotoControl.likesCount = photoController.gallery[currentPhoto].likesCount
                 likePhotoControl.isLiked = photoController.gallery[currentPhoto].isUserLiked
-            }
+            }*/
         }
     }
     var interactiveAnimator: UIViewPropertyAnimator?
@@ -38,27 +38,27 @@ class PhotoCell: UICollectionViewCell {
     }
     
     func config(parentController: UIViewController) {
-        if let photoController = parentController as? PhotoViewController {
+        /*if let photoController = parentController as? PhotoViewController {
             photo.image = photoController.gallery[currentPhoto].image
             likePhotoControl.likesCount = photoController.gallery[currentPhoto].likesCount
             likePhotoControl.isLiked = photoController.gallery[currentPhoto].isUserLiked
             likePhotoControl.addTarget(self, action: #selector(self.onLike(_:)), for: .valueChanged)
-        }
+        }*/
         
         self.viewController = parentController
     }
     
     @objc
     func onLike(_ sender: UIControl) {
-        guard let photoController = viewController as? PhotoViewController else { return }
+        /*guard let photoController = viewController as? PhotoViewController else { return }
         
         photoController.gallery[currentPhoto].likesCount = likePhotoControl.likesCount
-        photoController.gallery[currentPhoto].isUserLiked = likePhotoControl.isLiked
+        photoController.gallery[currentPhoto].isUserLiked = likePhotoControl.isLiked*/
     }
     
     @objc
     func handleSwipe(_ recognizer: UISwipeGestureRecognizer) {
-        guard let photoController = viewController as? PhotoViewController else { return }
+        /*guard let photoController = viewController as? PhotoViewController else { return }
         if recognizer.direction == .right {
             if currentPhoto > 0 {
                 currentPhoto -= 1
@@ -75,7 +75,7 @@ class PhotoCell: UICollectionViewCell {
                     swipeAnimation(recognizer, self.frame.width, image)
                 }
             }
-        }
+        }*/
     }
     
     func swipeAnimation(_ recognizer: UISwipeGestureRecognizer, _ offset: CGFloat, _ image: UIImage) {

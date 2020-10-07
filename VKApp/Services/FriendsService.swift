@@ -8,9 +8,9 @@
 
 import Foundation
 
-class FriendsService {
+class FriendsService: UrlService {
     
-    func loadFriendsList() {
+    func loadFriendsList(completion: @escaping (FriendsResult) -> Void) {
         //Конфигурация по умолчанию
         let configuration = URLSessionConfiguration.default
         //Собственная сессия
@@ -28,18 +28,11 @@ class FriendsService {
         urlConstructor.path = "/method/friends.get"
         //Параметры для запроса
         urlConstructor.queryItems = [
+            URLQueryItem(name: "fields", value: "nickname, photo_50"),
             URLQueryItem(name: "access_token", value: "\(token)"),
             URLQueryItem(name: "v", value: "5.124")
         ]
         
-        //Задача для запуска
-        let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
-            //Преобразуем полученные данные в json
-            let json = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-            //Выводим в консоль
-            print(json)
-        }
-        //Запускаем задачу
-        task.resume()
+        doTask(session, urlConstructor.url!, parcingType: FriendsResult.self, completion: completion)
     }
 }

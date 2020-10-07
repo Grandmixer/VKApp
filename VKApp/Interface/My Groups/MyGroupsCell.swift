@@ -1,5 +1,5 @@
 //
-//  AllGroupsCell.swift
+//  MyGroupsCell.swift
 //  VKApp
 //
 //  Created by Желанов Александр Валентинович on 27.08.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllGroupsCell: UITableViewCell {
+class MyGroupsCell: UITableViewCell {
     
     @IBOutlet weak var groupName: UILabel!
     @IBOutlet weak var groupAvatar: UIImageView!
@@ -21,7 +21,9 @@ class AllGroupsCell: UITableViewCell {
     
     func config(group: Group) {
         groupName.text = group.name
-        groupAvatar.image = group.avatar
+        if let url = URL(string: group.photo_50) {
+            groupAvatar.load(url: url)
+        }
     }
     
     @objc
@@ -38,5 +40,3 @@ class AllGroupsCell: UITableViewCell {
         self.groupAvatarContainer.layer.add(animation, forKey: nil)
     }
 }
-
-
