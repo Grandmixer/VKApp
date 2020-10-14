@@ -17,11 +17,24 @@ class MyGroupsController: UITableViewController {
     var groupsFiltered: [Group] = []
     var sectionsList: [GroupsCellHeaderItem] = []
     
+    var groupsService = GroupsService()
+    
     override func viewDidLoad() {
-        //Сортируем при загрузке для корректного удаления группы по индексу
-
+        groupsService.loadGroupsList(completion: { [weak self] result in
+            self?.groups = result.response.items
+            
+            //Сортируем с начала загрузки, чтобы корректно сохранять индекс последнего нажатого друга
+            self?.groups = self?.groups.sorted { (u1, u2) -> Bool in
+                u1.name < u2.name
+            } ?? []
+            
+            self?.sectionsList = self?.map(input: self?.groups ?? []) ?? []
+            
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        })
         setupSearchBar()
-        sectionsList = map(input: groups)
         
         tableView.register(AllGroupsCellHeader.self, forHeaderFooterViewReuseIdentifier: "GroupsHeader")
         tableView.allowsSelection = true
@@ -30,7 +43,7 @@ class MyGroupsController: UITableViewController {
     private func indexation(input: [Group]) -> [Group] {
         return input.enumerated().map{ (index, element: Group) -> Group in
             var mutableGroup = element
-            mutableGroup.index = index
+            //mutableGroup.index = index
             return mutableGroup
         }
     }
@@ -101,7 +114,7 @@ class MyGroupsController: UITableViewController {
         //Если была нажата кнопка "Удалить"
         if editingStyle == .delete {
             //Удаляем группу из основного массива
-            groups.remove(at: sectionsList[indexPath.section].groups[indexPath.row].index)
+            //groups.remove(at: sectionsList[indexPath.section].groups[indexPath.row].index)
             //Удаляем группу из массива хедеров
             sectionsList[indexPath.section].groups.remove(at: indexPath.row)
             //Удаляем строку из таблицы

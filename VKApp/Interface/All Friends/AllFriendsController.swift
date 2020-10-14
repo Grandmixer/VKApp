@@ -13,32 +13,37 @@ class AllFriendsController: UITableViewController {
     @IBOutlet weak var myFriendsSearchBar: UISearchBar!
     
     var searchActive: Bool = false
-    var friends = [User(name: "Arturo", avatar: UIImage(named: "BoyAvatar"), gallery: [Photo(image: UIImage(named: "BoyAvatar"), likesCount: 50, isUserLiked: false)]),
-                   User(name: "Roberto", avatar: UIImage(named: "BoyAvatar"), gallery: [Photo(image: UIImage(named: "BoyAvatar"), likesCount: 0, isUserLiked: false), Photo(image: UIImage(named: "GirlAvatar"), likesCount: 4, isUserLiked: true)]),
-                   User(name: "Alex", avatar: UIImage(named: "BoyAvatar"), gallery: [Photo(image: UIImage(named: "BoyAvatar"), likesCount: 5, isUserLiked: true)]),
-                   User(name: "Ujin", avatar: UIImage(named: "BoyAvatar"), gallery: [Photo(image: UIImage(named: "BoyAvatar"), likesCount: 15, isUserLiked: true)]),
-                   User(name: "Uriel", avatar: UIImage(named: "GirlAvatar"), gallery:[Photo(image: UIImage(named: "GirlAvatar"), likesCount: 17, isUserLiked: true)])]
+    var friends = [User]()
     var lastClickedFriend = 0
     var friendsFiltered: [User] = []
     var sectionsList: [FriendsCellHeaderItem] = []
     
+    var friendsService = FriendsService()
+    var localDBService = LocalDataBaseService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let friendsService = FriendsService()
-        friendsService.loadFriendsList()
-        let photosService = PhotosService()
-        photosService.loadPhotosList()
-        let groupsService = GroupsService()
-        groupsService.loadGroupsList()
-        
-        //Сортируем с начала загрузки, чтобы корректно сохранять индекс последнего нажатого друга
-        friends = friends.sorted { (u1, u2) -> Bool in
-            u1.name < u2.name
-        }
+        friendsService.loadFriendsList(completion: { [weak self] result in
+            self?.friends = result.response.items
+            //Сохраняем в базу данных
+            for friend in result.response.items {
+                self?.localDBService.saveUser(id: friend.id, first_name: friend.first_name, last_name: friend.last_name, photo_50: friend.photo_50)
+            }
+            
+            //Сортируем с начала загрузки, чтобы корректно сохранять индекс последнего нажатого друга
+            self?.friends = self?.friends.sorted { (u1, u2) -> Bool in
+                u1.name < u2.name
+            } ?? []
+            
+            self?.sectionsList = self?.map(input: self?.friends ?? []) ?? []
+            
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        })
         
         setupSearchBar()
-        sectionsList = map(input: friends)
         
         tableView.register(AllFriendsCellHeader.self, forHeaderFooterViewReuseIdentifier: "FriendHeader")
         tableView.allowsSelection = true
@@ -144,7 +149,7 @@ extension AllFriendsController: UISearchBarDelegate {
     }
 }
 
-extension AllFriendsController {
+/*extension AllFriendsController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? PhotoViewController {
             if let cell = sender as? UITableViewCell {
@@ -166,5 +171,5 @@ extension AllFriendsController {
             sectionsList = map(input: friends)
         }
     }
-}
+}*/
 

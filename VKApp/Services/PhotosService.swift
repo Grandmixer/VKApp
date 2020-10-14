@@ -8,9 +8,9 @@
 
 import Foundation
 
-class PhotosService {
+class PhotosService: UrlService {
     
-    func loadPhotosList() {
+    func loadPhotosList(completion: @escaping (PhotosResult) -> Void) {
         //Конфигурация по умолчанию
         let configuration = URLSessionConfiguration.default
         //Собственная сессия
@@ -33,14 +33,6 @@ class PhotosService {
             URLQueryItem(name: "v", value: "5.124")
         ]
         
-        //Задача для запуска
-        let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
-            //Преобразуем полученные данные в json
-            let json = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-            //Выводим в консоль
-            print(json)
-        }
-        //Запускаем задачу
-        task.resume()
+        doTask(session, urlConstructor.url!, parcingType: PhotosResult.self, completion: completion)
     }
 }

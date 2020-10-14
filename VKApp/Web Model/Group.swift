@@ -8,10 +8,19 @@
 
 import UIKit
 
-struct Group {
+struct GroupsResult: Codable {
+    let response: GroupsResponse
+}
+
+struct GroupsResponse: Codable {
+    let count: Int
+    let items: [Group]
+}
+
+struct Group: Codable {
+    let id: Double
     let name: String
-    let avatar: UIImage?
-    var index: Int
+    let photo_50: String
     
     func getNameFirstLetter() -> String {
         return String(name.first ?? "z")

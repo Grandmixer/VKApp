@@ -12,6 +12,7 @@
 		FF21428F24F8131C000F4ED3 /* MyGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21428E24F8131C000F4ED3 /* MyGroupsController.swift */; };
 		FF21429124F8134F000F4ED3 /* MyGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21429024F8134F000F4ED3 /* MyGroupsCell.swift */; };
 		FF242A8625077BC100116C38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF242A8525077BC100116C38 /* User.swift */; };
+		FF2C5C4C2528D9580082C7B5 /* UrlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2C5C4B2528D9580082C7B5 /* UrlService.swift */; };
 		FF2D624525098B7600E15F65 /* FriendsCellHeaderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2D624425098B7600E15F65 /* FriendsCellHeaderItem.swift */; };
 		FF30054A250AD2E700B19AB2 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF300549250AD2E700B19AB2 /* NewsCell.swift */; };
 		FF30054C250AD46700B19AB2 /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30054B250AD46700B19AB2 /* NewsController.swift */; };
@@ -31,6 +32,11 @@
 		FFCD29632510EC9C00C7E83F /* CustomPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD29622510EC9C00C7E83F /* CustomPopAnimator.swift */; };
 		FFCD296525111DE900C7E83F /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD296425111DE900C7E83F /* CustomNavigationController.swift */; };
 		FFCD29672511503500C7E83F /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD29662511503500C7E83F /* CustomInteractiveTransition.swift */; };
+		FFD3A4F2252DE74C00CF1FDE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD3A4F1252DE74C00CF1FDE /* CoreDataStack.swift */; };
+		FFD3A4F6252DEBFB00CF1FDE /* LocalDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFD3A4F4252DEBFB00CF1FDE /* LocalDB.xcdatamodeld */; };
+		FFD3A4FA252DECB700CF1FDE /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD3A4F8252DECB700CF1FDE /* User+CoreDataClass.swift */; };
+		FFD3A4FB252DECB700CF1FDE /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD3A4F9252DECB700CF1FDE /* User+CoreDataProperties.swift */; };
+		FFD3A500252DED8000CF1FDE /* LocalDataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD3A4FF252DED8000CF1FDE /* LocalDataBaseService.swift */; };
 		FFE762C42518BE81008DE0F9 /* AllGroupsCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE762C32518BE81008DE0F9 /* AllGroupsCellHeader.swift */; };
 		FFEFC7082504004700C95BA5 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEFC7072504004700C95BA5 /* PhotoViewController.swift */; };
 		FFF4E36924F2A99F008310B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF4E36824F2A99F008310B6 /* AppDelegate.swift */; };
@@ -50,6 +56,7 @@
 		FF21428E24F8131C000F4ED3 /* MyGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsController.swift; sourceTree = "<group>"; };
 		FF21429024F8134F000F4ED3 /* MyGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsCell.swift; sourceTree = "<group>"; };
 		FF242A8525077BC100116C38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FF2C5C4B2528D9580082C7B5 /* UrlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlService.swift; sourceTree = "<group>"; };
 		FF2D624425098B7600E15F65 /* FriendsCellHeaderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellHeaderItem.swift; sourceTree = "<group>"; };
 		FF300549250AD2E700B19AB2 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		FF30054B250AD46700B19AB2 /* NewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
@@ -69,6 +76,11 @@
 		FFCD29622510EC9C00C7E83F /* CustomPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopAnimator.swift; sourceTree = "<group>"; };
 		FFCD296425111DE900C7E83F /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		FFCD29662511503500C7E83F /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
+		FFD3A4F1252DE74C00CF1FDE /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		FFD3A4F5252DEBFB00CF1FDE /* LocalDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalDB.xcdatamodel; sourceTree = "<group>"; };
+		FFD3A4F8252DECB700CF1FDE /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FFD3A4F9252DECB700CF1FDE /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FFD3A4FF252DED8000CF1FDE /* LocalDataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataBaseService.swift; sourceTree = "<group>"; };
 		FFE762C32518BE81008DE0F9 /* AllGroupsCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsCellHeader.swift; sourceTree = "<group>"; };
 		FFEFC7072504004700C95BA5 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FFF4E36524F2A99F008310B6 /* VKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,21 +144,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		FF242A8425077AF900116C38 /* Model */ = {
+		FF242A8425077AF900116C38 /* Web Model */ = {
 			isa = PBXGroup;
 			children = (
 				FF242A8525077BC100116C38 /* User.swift */,
 				FF4B097E2518CBC8008CB18B /* Group.swift */,
 				FF4EEE942513AC4B00E1D814 /* Photo.swift */,
-				FF63783F24F6F2E300838F45 /* All Friends */,
-				FF242A8225077A4D00116C38 /* FriendsPhoto */,
-				FF21428324F7CEFA000F4ED3 /* All Groups */,
-				FF21428D24F812F7000F4ED3 /* My Groups */,
-				FF300548250AD29C00B19AB2 /* News */,
-				FF35D7EC2511626D0093E0F3 /* Avatar */,
-				FF35D7ED251162910093E0F3 /* Controls */,
 			);
-			path = Model;
+			path = "Web Model";
 			sourceTree = "<group>";
 		};
 		FF300548250AD29C00B19AB2 /* News */ = {
@@ -187,6 +192,19 @@
 			path = NavigationController;
 			sourceTree = "<group>";
 		};
+		FF519CBC252B1DCB002DF6F3 /* SupportedFiles */ = {
+			isa = PBXGroup;
+			children = (
+				FFF4E36824F2A99F008310B6 /* AppDelegate.swift */,
+				FFF4E36A24F2A99F008310B6 /* SceneDelegate.swift */,
+				FFF4E37124F2A9A2008310B6 /* Assets.xcassets */,
+				FFF4E37624F2A9A2008310B6 /* Info.plist */,
+				FF5EEF53251DF7DD006269BB /* Session.swift */,
+				FFD3A4F1252DE74C00CF1FDE /* CoreDataStack.swift */,
+			);
+			path = SupportedFiles;
+			sourceTree = "<group>";
+		};
 		FF63783F24F6F2E300838F45 /* All Friends */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +214,31 @@
 				FF2D624425098B7600E15F65 /* FriendsCellHeaderItem.swift */,
 			);
 			path = "All Friends";
+			sourceTree = "<group>";
+		};
+		FFD3A4FD252DECC200CF1FDE /* LocalDB Structures */ = {
+			isa = PBXGroup;
+			children = (
+				FFD3A4F9252DECB700CF1FDE /* User+CoreDataProperties.swift */,
+				FFD3A4F8252DECB700CF1FDE /* User+CoreDataClass.swift */,
+			);
+			path = "LocalDB Structures";
+			sourceTree = "<group>";
+		};
+		FFD3A502252DF38200CF1FDE /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				FF242A8325077A9600116C38 /* Login */,
+				FF63783F24F6F2E300838F45 /* All Friends */,
+				FF242A8225077A4D00116C38 /* FriendsPhoto */,
+				FF21428324F7CEFA000F4ED3 /* All Groups */,
+				FF21428D24F812F7000F4ED3 /* My Groups */,
+				FF300548250AD29C00B19AB2 /* News */,
+				FF35D7EC2511626D0093E0F3 /* Avatar */,
+				FF35D7EE251162B10093E0F3 /* NavigationController */,
+				FF35D7ED251162910093E0F3 /* Controls */,
+			);
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		FFF4E35C24F2A99F008310B6 = {
@@ -217,17 +260,14 @@
 		FFF4E36724F2A99F008310B6 /* VKApp */ = {
 			isa = PBXGroup;
 			children = (
+				FF242A8425077AF900116C38 /* Web Model */,
+				FFD3A4FD252DECC200CF1FDE /* LocalDB Structures */,
 				FFF6327B25220B4B001CF164 /* Services */,
-				FFF4E36824F2A99F008310B6 /* AppDelegate.swift */,
-				FFF4E36A24F2A99F008310B6 /* SceneDelegate.swift */,
-				FF5EEF53251DF7DD006269BB /* Session.swift */,
-				FF242A8425077AF900116C38 /* Model */,
-				FF242A8325077A9600116C38 /* Login */,
-				FF35D7EE251162B10093E0F3 /* NavigationController */,
+				FFD3A502252DF38200CF1FDE /* Interface */,
+				FF519CBC252B1DCB002DF6F3 /* SupportedFiles */,
 				FFF4E36E24F2A99F008310B6 /* Main.storyboard */,
-				FFF4E37124F2A9A2008310B6 /* Assets.xcassets */,
 				FFF4E37324F2A9A2008310B6 /* LaunchScreen.storyboard */,
-				FFF4E37624F2A9A2008310B6 /* Info.plist */,
+				FFD3A4F4252DEBFB00CF1FDE /* LocalDB.xcdatamodeld */,
 			);
 			path = VKApp;
 			sourceTree = "<group>";
@@ -235,9 +275,11 @@
 		FFF6327B25220B4B001CF164 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FF2C5C4B2528D9580082C7B5 /* UrlService.swift */,
 				FFF6327C25220C83001CF164 /* FriendsService.swift */,
 				FFF632802522141D001CF164 /* PhotosService.swift */,
 				FFF6328325221464001CF164 /* GroupsService.swift */,
+				FFD3A4FF252DED8000CF1FDE /* LocalDataBaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -317,20 +359,25 @@
 				FF5EEF54251DF7DD006269BB /* Session.swift in Sources */,
 				FF4B09832518CC86008CB18B /* GroupsCellHeaderItem.swift in Sources */,
 				FF4F034225023CAE0022F310 /* AvatarView.swift in Sources */,
+				FFD3A500252DED8000CF1FDE /* LocalDataBaseService.swift in Sources */,
 				FF6F2D13250646CF003EC1E6 /* AllFriendsCellHeader.swift in Sources */,
 				FFCD29632510EC9C00C7E83F /* CustomPopAnimator.swift in Sources */,
 				FFF632812522141D001CF164 /* PhotosService.swift in Sources */,
 				FFF4E36D24F2A99F008310B6 /* LoginViewController.swift in Sources */,
+				FF2C5C4C2528D9580082C7B5 /* UrlService.swift in Sources */,
 				FFF6327D25220C83001CF164 /* FriendsService.swift in Sources */,
 				FF63784324F6F39700838F45 /* AllFriendsCell.swift in Sources */,
 				FFCD296525111DE900C7E83F /* CustomNavigationController.swift in Sources */,
 				FF6AC66D250D7E8000B95C75 /* LoadingAnimation.swift in Sources */,
 				FFCD29672511503500C7E83F /* CustomInteractiveTransition.swift in Sources */,
+				FFD3A4FA252DECB700CF1FDE /* User+CoreDataClass.swift in Sources */,
 				FF4B097F2518CBC8008CB18B /* Group.swift in Sources */,
 				FF4EEE952513AC4B00E1D814 /* Photo.swift in Sources */,
+				FFD3A4F6252DEBFB00CF1FDE /* LocalDB.xcdatamodeld in Sources */,
 				FFE762C42518BE81008DE0F9 /* AllGroupsCellHeader.swift in Sources */,
 				FF63784124F6F38700838F45 /* AllFriendsController.swift in Sources */,
 				FF30054C250AD46700B19AB2 /* NewsController.swift in Sources */,
+				FFD3A4FB252DECB700CF1FDE /* User+CoreDataProperties.swift in Sources */,
 				FF7B11B325027D3C00CAE117 /* LikedIt.swift in Sources */,
 				FF21428F24F8131C000F4ED3 /* MyGroupsController.swift in Sources */,
 				FF242A8625077BC100116C38 /* User.swift in Sources */,
@@ -341,6 +388,7 @@
 				FF4F034425025FED0022F310 /* ShadowView.swift in Sources */,
 				FF30054A250AD2E700B19AB2 /* NewsCell.swift in Sources */,
 				FFCD295F250F547900C7E83F /* PhotoCell.swift in Sources */,
+				FFD3A4F2252DE74C00CF1FDE /* CoreDataStack.swift in Sources */,
 				FF21428724F7CF56000F4ED3 /* AllGroupsCell.swift in Sources */,
 				FF21429124F8134F000F4ED3 /* MyGroupsCell.swift in Sources */,
 				FFEFC7082504004700C95BA5 /* PhotoViewController.swift in Sources */,
@@ -491,7 +539,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VKApp/Info.plist;
+				INFOPLIST_FILE = VKApp/SupportedFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -508,7 +556,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VKApp/Info.plist;
+				INFOPLIST_FILE = VKApp/SupportedFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -542,6 +590,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FFD3A4F4252DEBFB00CF1FDE /* LocalDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FFD3A4F5252DEBFB00CF1FDE /* LocalDB.xcdatamodel */,
+			);
+			currentVersion = FFD3A4F5252DEBFB00CF1FDE /* LocalDB.xcdatamodel */;
+			path = LocalDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FFF4E35D24F2A99F008310B6 /* Project object */;
 }

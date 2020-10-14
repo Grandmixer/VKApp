@@ -21,7 +21,9 @@ class AllFriendsCell: UITableViewCell {
     
     func config(friend: User) {
         friendName.text = friend.name
-        friendAvatar.image = friend.avatar
+        if let url = URL(string: friend.photo_50) {
+            friendAvatar.load(url: url)
+        }
     }
     
     @objc
@@ -36,5 +38,19 @@ class AllFriendsCell: UITableViewCell {
         animation.fillMode = CAMediaTimingFillMode.backwards
         
         self.friendAvatarContainer.layer.add(animation, forKey: nil)
+    }
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }
