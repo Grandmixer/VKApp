@@ -19,7 +19,7 @@ class AllGroupsCell: UITableViewCell {
         self.groupAvatarContainer.addGestureRecognizer(gesture)
     }
     
-    func config(group: Group) {
+    func config(group: RealmGroup) {
         groupName.text = group.name
         if let url = URL(string: group.photo_50) {
             groupAvatar.load(url: url)

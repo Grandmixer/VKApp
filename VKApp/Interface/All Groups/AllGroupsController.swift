@@ -13,10 +13,6 @@ class AllGroupsController: UITableViewController {
     @IBOutlet weak var allGroupsSearchBar: UISearchBar!
     
     var searchActive: Bool = false
-    /*var groups = [Group(name: "CatLovers", avatar: UIImage(named: "GroupAvatar"), index: 0),
-                  Group(name: "2ch.hk", avatar: UIImage(named: "GroupAvatar"), index: 1),
-                  Group(name: "Memes", avatar: UIImage(named: "GroupAvatar"), index: 2),
-                  Group(name: "BlackLivesMatter", avatar: UIImage(named: "GroupAvatar"), index: 3)]*/
     var groupsFiltered: [Group] = []
     var sectionsList: [GroupsCellHeaderItem] = []
     
@@ -66,7 +62,7 @@ class AllGroupsController: UITableViewController {
             let group = sectionsList[indexPath.section].groups[indexPath.row]
             
             //Устанавливаем имя группы в надпись в ячейке
-            cell.config(group: group)
+            //cell.config(group: group)
             
             return cell
         } else {

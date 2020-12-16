@@ -8,9 +8,9 @@
 
 import Foundation
 
-class PhotosService: UrlService {
+class PhotosService: JsonService {
     
-    func loadPhotosList(completion: @escaping (PhotosResult) -> Void) {
+    func loadPhotosList(id: Double, completion: @escaping (PhotosResult) -> Void) {
         //Конфигурация по умолчанию
         let configuration = URLSessionConfiguration.default
         //Собственная сессия
@@ -28,7 +28,10 @@ class PhotosService: UrlService {
         urlConstructor.path = "/method/photos.get"
         //Параметры для запроса
         urlConstructor.queryItems = [
-            URLQueryItem(name: "album_id", value: "wall"),
+            URLQueryItem(name: "owner_id", value: "\(id)"),
+            URLQueryItem(name: "album_id", value: "profile"),
+            URLQueryItem(name: "extended", value: "1"),
+            URLQueryItem(name: "rev", value: "1"),
             URLQueryItem(name: "access_token", value: "\(token)"),
             URLQueryItem(name: "v", value: "5.124")
         ]

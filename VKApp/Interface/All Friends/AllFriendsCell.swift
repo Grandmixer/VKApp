@@ -19,11 +19,16 @@ class AllFriendsCell: UITableViewCell {
         self.friendAvatarContainer.addGestureRecognizer(gesture)
     }
     
-    func config(friend: User) {
+    func config(friend: RealmUser) {
+        friendName.text = ""
+        friendAvatar.image = nil
+        
         friendName.text = friend.name
-        if let url = URL(string: friend.photo_50) {
-            friendAvatar.load(url: url)
-        }
+        friendAvatar.loadImageUsingUrlString(urlString: friend.photo_50)
+    }
+    
+    override func prepareForReuse() {
+        friendAvatar.image = nil
     }
     
     @objc
@@ -38,19 +43,5 @@ class AllFriendsCell: UITableViewCell {
         animation.fillMode = CAMediaTimingFillMode.backwards
         
         self.friendAvatarContainer.layer.add(animation, forKey: nil)
-    }
-}
-
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
     }
 }

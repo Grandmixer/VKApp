@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GroupsService: UrlService {
+class GroupsService: JsonService {
     
     func loadGroupsList(completion: @escaping (GroupsResult) -> Void) {
         //Конфигурация по умолчанию

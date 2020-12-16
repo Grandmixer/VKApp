@@ -1,4 +1,4 @@
-//
+    //
 //  User+CoreDataProperties.swift
 //  VKApp
 //

@@ -6,7 +6,7 @@
 //  Copyright © 2020 OlwaStd. All rights reserved.
 //
 
-class Session {
+final class Session {
     
     static let instance = Session()
     

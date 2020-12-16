@@ -40,9 +40,10 @@ class LoginViewController: UIViewController {
             URLQueryItem(name: "client_id", value: "7611567"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: "friends"),
+            URLQueryItem(name: "scope", value: "friends,photos,groups,wall"),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.124")
+            URLQueryItem(name: "v", value: "5.126"),
+            URLQueryItem(name: "state", value: "success")
         ]
         
         let request = URLRequest(url: urlComponents.url!)
@@ -128,6 +129,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        print(navigationResponse.response.url)
         guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
             decisionHandler(.allow)
             return

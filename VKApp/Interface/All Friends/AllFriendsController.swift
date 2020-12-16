@@ -7,69 +7,89 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AllFriendsController: UITableViewController {
     
     @IBOutlet weak var myFriendsSearchBar: UISearchBar!
-    
-    var searchActive: Bool = false
-    var friends = [User]()
-    var lastClickedFriend = 0
-    var friendsFiltered: [User] = []
-    var sectionsList: [FriendsCellHeaderItem] = []
-    
+
     var friendsService = FriendsService()
-    var localDBService = LocalDataBaseService()
+    var realmService = RealmService()
+    var token: NotificationToken?
+    
+    var users: Results<RealmUser>?
+    var sectionsList: [FriendsCellHeaderItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        friendsService.loadFriendsList(completion: { [weak self] result in
-            self?.friends = result.response.items
-            //Сохраняем в базу данных
-            for friend in result.response.items {
-                self?.localDBService.saveUser(id: friend.id, first_name: friend.first_name, last_name: friend.last_name, photo_50: friend.photo_50)
-            }
-            
-            //Сортируем с начала загрузки, чтобы корректно сохранять индекс последнего нажатого друга
-            self?.friends = self?.friends.sorted { (u1, u2) -> Bool in
-                u1.name < u2.name
-            } ?? []
-            
-            self?.sectionsList = self?.map(input: self?.friends ?? []) ?? []
-            
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        })
+        tableView.register(AllFriendsCellHeader.self, forHeaderFooterViewReuseIdentifier: "FriendHeader")
+        tableView.allowsSelection = true
         
         setupSearchBar()
         
-        tableView.register(AllFriendsCellHeader.self, forHeaderFooterViewReuseIdentifier: "FriendHeader")
-        tableView.allowsSelection = true
+        friendsService.loadFriendsList(completion: { [weak self] result in
+            //Сохраняем web модель в базу данных realm
+            self?.realmService.saveUserData(result.response.items)
+        })
+        pairTableAndRealm()
     }
     
-    private func map(input: [User]) -> [FriendsCellHeaderItem] {
+    func pairTableAndRealm() {
+        guard let realm = try? Realm() else { return }
+        
+        users = realm.objects(RealmUser.self)
+        if let users = users {
+            sectionsList = map(input: Array(users))
+        } else {
+            sectionsList = []
+        }
+        
+        token = users?.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            
+            //Для этой страницы только обновляем
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update:
+                if let users = self?.users {
+                    self?.sectionsList = self?.map(input: Array(users)) ?? []
+                } else {
+                    self?.sectionsList = []
+                }
+                tableView.reloadData()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        }
+    }
+    
+    deinit {
+        token?.invalidate()
+    }
+    
+    private func map(input: [RealmUser]) -> [FriendsCellHeaderItem] {
+        let input = input.sorted { (u1, u2) -> Bool in
+            u1.name < u2.name
+        }
         var itemsList: [FriendsCellHeaderItem] = []
         
         var previousLetter = input.first?.getNameFirstLetter() ?? "A"
-        var usersList: [User] = []
-        var indiciesList: [Int] = []
+        var usersList: [RealmUser] = []
         
-        for (index, user) in input.enumerated() {
+        for user in input {
             let firstUserNameLetter = user.getNameFirstLetter()
             if firstUserNameLetter == previousLetter {
                 usersList.append(user)
-                indiciesList.append(index)
             } else {
-                itemsList.append(FriendsCellHeaderItem(headerTitle: previousLetter, users: usersList, indicies: indiciesList))
+                itemsList.append(FriendsCellHeaderItem(headerTitle: previousLetter, users: usersList))
                 usersList = [user]
-                indiciesList = [index]
                 previousLetter = firstUserNameLetter
             }
         }
         if usersList.count > 0 {
-            itemsList.append(FriendsCellHeaderItem(headerTitle: previousLetter, users: usersList, indicies: indiciesList))
+            itemsList.append(FriendsCellHeaderItem(headerTitle: previousLetter, users: usersList))
         }
         
         return itemsList
@@ -84,10 +104,9 @@ class AllFriendsController: UITableViewController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? AllFriendsCell {
             //Получаем объект друга для конкретной ячейки
             let friend = sectionsList[indexPath.section].users[indexPath.row]
-            
             //Конфигурируем ячейку
             cell.config(friend: friend)
-            
+    
             return cell
         } else {
             fatalError()
@@ -117,59 +136,35 @@ class AllFriendsController: UITableViewController {
 extension AllFriendsController: UISearchBarDelegate {
     func setupSearchBar() {
         myFriendsSearchBar.delegate = self
-        myFriendsSearchBar.placeholder = "Search friend"
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
+        myFriendsSearchBar.placeholder = "Поиск друзей"
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        friendsFiltered = friends.filter({ $0.name.contains(searchText) })
-        if friendsFiltered.count == 0 {
-            searchActive = false
-            sectionsList = map(input: friends)
-        } else {
-            searchActive = true
-            sectionsList = map(input: friendsFiltered)
+        if let users = users {
+            let filtered = Array(users).filter {( $0.name.contains(searchText) )}
+            
+            if filtered.count == 0 {
+                sectionsList = map(input: Array(users))
+            } else {
+                sectionsList = map(input: filtered)
+            }
+            tableView.reloadData()
         }
-        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
 }
 
-/*extension AllFriendsController {
+extension AllFriendsController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? PhotoViewController {
             if let cell = sender as? UITableViewCell {
                 if let indexPath = self.tableView.indexPath(for: cell) {
-                    destination.gallery = sectionsList[indexPath.section].users[indexPath.row].gallery
-                    lastClickedFriend = sectionsList[indexPath.section].indicies[indexPath.row]
+                    destination.user = sectionsList[indexPath.section].users[indexPath.row]
                 }
             }
         }
     }
-
-    @IBAction func exitFromPhoto(sender: UIStoryboardSegue) {
-        if let source = sender.source as? PhotoViewController {
-            friends[lastClickedFriend].gallery = source.gallery
-            print(friends[lastClickedFriend].name)
-            for element in friends[lastClickedFriend].gallery {
-                print(element)
-            }
-            sectionsList = map(input: friends)
-        }
-    }
-}*/
-
+}

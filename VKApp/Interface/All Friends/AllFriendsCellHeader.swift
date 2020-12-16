@@ -42,6 +42,7 @@ class AllFriendsCellHeader: UITableViewHeaderFooterView {
     
     func config(sectionItem: FriendsCellHeaderItem) {
         headerTitle.text = sectionItem.headerTitle
-        contentView.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
+        headerTitle.textColor = UIColor(red: CGFloat(237 / 255.0), green: CGFloat(246 / 255.0), blue: CGFloat(246 / 255.0), alpha: 1.0)
+        contentView.backgroundColor = UIColor(red: CGFloat(74 / 255.0), green: CGFloat(118 / 255.0), blue: CGFloat(168 / 255.0), alpha: 1.0)
     }
 }

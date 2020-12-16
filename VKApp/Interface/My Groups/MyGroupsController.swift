@@ -7,82 +7,83 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyGroupsController: UITableViewController {
     
     @IBOutlet weak var myGroupsSearchBar: UISearchBar!
     
-    var searchActive = false
-    var groups: [Group] = []
-    var groupsFiltered: [Group] = []
-    var sectionsList: [GroupsCellHeaderItem] = []
-    
     var groupsService = GroupsService()
+    var realmService = RealmService()
+    var token: NotificationToken?
+    
+    var groups: Results<RealmGroup>?
+    var groupsFiltered: [RealmGroup]?
     
     override func viewDidLoad() {
-        groupsService.loadGroupsList(completion: { [weak self] result in
-            self?.groups = result.response.items
-            
-            //Сортируем с начала загрузки, чтобы корректно сохранять индекс последнего нажатого друга
-            self?.groups = self?.groups.sorted { (u1, u2) -> Bool in
-                u1.name < u2.name
-            } ?? []
-            
-            self?.sectionsList = self?.map(input: self?.groups ?? []) ?? []
-            
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        })
+        tableView.allowsSelection = true
+        
         setupSearchBar()
         
-        tableView.register(AllGroupsCellHeader.self, forHeaderFooterViewReuseIdentifier: "GroupsHeader")
-        tableView.allowsSelection = true
+        groupsService.loadGroupsList(completion: { [weak self] result in
+            //Сохраняем web модель в базу данных realm
+            self?.realmService.saveGroupData(result.response.items)
+        })
+        pairTableAndRealm()
     }
     
-    private func indexation(input: [Group]) -> [Group] {
-        return input.enumerated().map{ (index, element: Group) -> Group in
-            var mutableGroup = element
-            //mutableGroup.index = index
-            return mutableGroup
+    func pairTableAndRealm() {
+        guard let realm = try? Realm() else { return }
+        
+        groups = realm.objects(RealmGroup.self)
+        if let groups = groups {
+            groupsFiltered = Array(groups)
+        } else {
+            groupsFiltered = []
         }
-    }
-    
-    private func map(input: [Group]) -> [GroupsCellHeaderItem] {
-        var itemsList: [GroupsCellHeaderItem] = []
         
-        var previousLetter = input.first?.getNameFirstLetter() ?? "A"
-        var groupsList: [Group] = []
-        
-        for group in input {
-            let firstGroupNameLetter = group.getNameFirstLetter()
-            if firstGroupNameLetter == previousLetter {
-                groupsList.append(group)
-            } else {
-                itemsList.append(GroupsCellHeaderItem(headerTitle: previousLetter, groups: groupsList))
-                groupsList = [group]
-                previousLetter = firstGroupNameLetter
+        token = groups?.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                if let groups = self?.groups {
+                    self?.groupsFiltered = Array(groups)
+                } else {
+                    self?.groupsFiltered = []
+                }
+                
+                tableView.reloadData()
+                /*tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                tableView.endUpdates()*/
+            case .error(let error):
+                fatalError("\(error)")
             }
         }
-        if groupsList.count > 0 {
-            itemsList.append(GroupsCellHeaderItem(headerTitle: previousLetter, groups: groupsList))
-        }
-        
-        return itemsList
+    }
+    
+    deinit {
+        token?.invalidate()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sectionsList[section].groups.count
+        groupsFiltered?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Получаем ячейку из пула
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroupCell", for: indexPath) as? MyGroupsCell {
             //Получаем группу для конкретной строки
-            let group = sectionsList[indexPath.section].groups[indexPath.row]
-            
-            //Устанавливаем имя группы в надпись в ячейке
-            cell.config(group: group)
+            //let group = sectionsList[indexPath.section].groups[indexPath.row]
+            if let group = groupsFiltered?[indexPath.row] {
+                //Устанавливаем имя группы в надпись в ячейке
+                cell.config(group: group)
+            }
             
             return cell
         } else {
@@ -91,26 +92,10 @@ class MyGroupsController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionsList.count
+        return 1
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //Получаем header из пула
-        if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "GroupsHeader") as? AllGroupsCellHeader {
-            //Устанавливаем свойства хедера
-            header.config(sectionItem: sectionsList[section])
-            return header
-        } else {
-            fatalError()
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    /*override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         //Если была нажата кнопка "Удалить"
         if editingStyle == .delete {
             //Удаляем группу из основного массива
@@ -151,40 +136,29 @@ class MyGroupsController: UITableViewController {
                 }
             }
         }
-    }
+    }*/
 }
 
 extension MyGroupsController: UISearchBarDelegate {
     func setupSearchBar() {
         myGroupsSearchBar.delegate = self
-        myGroupsSearchBar.placeholder = "Search group"
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
+        myGroupsSearchBar.placeholder = "Поиск сообществ"
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        groupsFiltered = groups.filter({ $0.name.contains(searchText) })
-        if groupsFiltered.count == 0 {
-            searchActive = false
-            sectionsList = map(input: groups)
-        } else {
-            searchActive = true
-            sectionsList = map(input: groupsFiltered)
+        if let groups = groups {
+            let filtered = Array(groups).filter({ $0.name.contains(searchText) })
+            
+            if filtered.count == 0 {
+                groupsFiltered = Array(groups)
+            } else {
+                groupsFiltered = filtered
+            }
         }
         tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
 }

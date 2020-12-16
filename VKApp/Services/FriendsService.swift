@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FriendsService: UrlService {
+class FriendsService: JsonService {
     
     func loadFriendsList(completion: @escaping (FriendsResult) -> Void) {
         //Конфигурация по умолчанию
