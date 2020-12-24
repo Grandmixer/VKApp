@@ -271,7 +271,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Cv-MQ-Zs6" customClass="AvatarView" customModule="VKApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="966-ah-8A7">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="966-ah-8A7">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         </imageView>
                                                     </subviews>
@@ -355,7 +355,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="likeControl" destination="5S0-LE-6fD" id="7Hs-ab-VAr"/>
                                     <outlet property="newsAvatar" destination="966-ah-8A7" id="iY3-Fz-S23"/>
+                                    <outlet property="newsAvatarContainer" destination="Go6-rS-G0i" id="FG6-X2-bLC"/>
                                     <outlet property="newsImage" destination="DzV-kp-rAe" id="vsp-Lx-33v"/>
                                     <outlet property="newsNameLabel" destination="rd0-Lq-4jE" id="VXr-eK-YdS"/>
                                     <outlet property="newsPostingDateLabel" destination="fWF-iU-O4D" id="Npi-fZ-ZFg"/>
@@ -632,7 +634,7 @@
         <scene sceneID="T5z-Lc-nWE">
             <objects>
                 <tableViewController id="Ra5-Qk-XeQ" customClass="AllGroupsController" customModule="VKApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="86u-iJ-C3o">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="86u-iJ-C3o">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -651,21 +653,21 @@
                             </userDefinedRuntimeAttributes>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupCell" id="OSb-62-yPl" customClass="AllGroupsCell" customModule="VKApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="428" height="53.333332061767578"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="60" id="OSb-62-yPl" customClass="AllGroupsCell" customModule="VKApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="428" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OSb-62-yPl" id="7U5-cs-9Rf">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="53.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOC-ch-XRT">
-                                            <rect key="frame" x="90" y="15.999999999999998" width="298" height="21.333333333333329"/>
+                                            <rect key="frame" x="90" y="20" width="298" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IQE-da-XFK" userLabel="Search Group Avatar Container">
-                                            <rect key="frame" x="20" y="1.6666666666666679" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="5" width="50" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5H-MV-lvk" customClass="ShadowView" customModule="VKApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -687,7 +689,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3PP-2S-INu" customClass="AvatarView" customModule="VKApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GroupAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="eUF-Jd-aff">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eUF-Jd-aff">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         </imageView>
                                                     </subviews>
@@ -716,8 +718,6 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="FOC-ch-XRT" firstAttribute="leading" secondItem="IQE-da-XFK" secondAttribute="trailing" constant="20" id="DcT-Jo-rJy"/>
-                                        <constraint firstItem="FOC-ch-XRT" firstAttribute="top" secondItem="7U5-cs-9Rf" secondAttribute="topMargin" constant="5" id="Gec-kx-eSJ"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="FOC-ch-XRT" secondAttribute="bottom" constant="5" id="OAj-8w-epa"/>
                                         <constraint firstItem="IQE-da-XFK" firstAttribute="leading" secondItem="7U5-cs-9Rf" secondAttribute="leading" constant="20" id="qfs-cZ-XR1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="FOC-ch-XRT" secondAttribute="trailing" constant="20" id="uNH-QF-KpB"/>
                                         <constraint firstItem="IQE-da-XFK" firstAttribute="centerY" secondItem="7U5-cs-9Rf" secondAttribute="centerY" id="unQ-a8-67r"/>
@@ -728,7 +728,7 @@
                                     <outlet property="groupAvatar" destination="eUF-Jd-aff" id="UYi-23-cdg"/>
                                     <outlet property="groupAvatarContainer" destination="IQE-da-XFK" id="Pzv-4W-gfD"/>
                                     <outlet property="groupName" destination="FOC-ch-XRT" id="sq9-Qf-64U"/>
-                                    <segue destination="YGr-ba-GEv" kind="unwind" identifier="addGroup" unwindAction="addGroupWithSegue:" id="8tF-zH-T7H"/>
+                                    <segue destination="YGr-ba-GEv" kind="unwind" identifier="addGroup" unwindAction="addGroupWithSegue:" id="91s-MR-KGy"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -811,7 +811,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8U-dL-Qcf" customClass="AvatarView" customModule="VKApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GroupAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="Rxa-u7-afJ">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rxa-u7-afJ">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         </imageView>
                                                     </subviews>
@@ -900,7 +900,6 @@
         </designable>
     </designables>
     <resources>
-        <image name="Avatar" width="170.66667175292969" height="170.66667175292969"/>
         <image name="GroupAvatar" width="170.66667175292969" height="170.66667175292969"/>
         <image name="doc.plaintext" catalog="system" width="115" height="128"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
