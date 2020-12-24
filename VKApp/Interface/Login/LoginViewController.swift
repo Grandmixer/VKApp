@@ -48,6 +48,7 @@ class LoginViewController: UIViewController {
         
         let request = URLRequest(url: urlComponents.url!)
         
+        
         webview.load(request)
     }
     

@@ -35,4 +35,32 @@ class GroupsService: JsonService {
         
         doTask(session, urlConstructor.url!, parcingType: GroupsResult.self, completion: completion)
     }
+    
+    func searchGroups(substring: String, completion: @escaping (GroupsResult) -> Void) {
+        //Конфигурация по умолчанию
+        let configuration = URLSessionConfiguration.default
+        //Собственная сессия
+        let session = URLSession(configuration: configuration)
+        //Токен
+        let token = Session.instance.token
+        
+        //Создаем конструктор для URL
+        var urlConstructor = URLComponents()
+        //Устанавливаем схему
+        urlConstructor.scheme = "http"
+        //Устанавливаем хост
+        urlConstructor.host = "api.vk.com"
+        //Путь
+        urlConstructor.path = "/method/groups.search"
+        //Параметры для запроса
+        urlConstructor.queryItems = [
+            URLQueryItem(name: "q", value: substring),
+            URLQueryItem(name: "type", value: "group"),
+            URLQueryItem(name: "count", value: "1000"),
+            URLQueryItem(name: "access_token", value: "\(token)"),
+            URLQueryItem(name: "v", value: "5.124")
+        ]
+        
+        doTask(session, urlConstructor.url!, parcingType: GroupsResult.self, completion: completion)
+    }
 }
