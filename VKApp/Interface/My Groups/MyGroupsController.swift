@@ -79,7 +79,6 @@ class MyGroupsController: UITableViewController {
         //Получаем ячейку из пула
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroupCell", for: indexPath) as? MyGroupsCell {
             //Получаем группу для конкретной строки
-            //let group = sectionsList[indexPath.section].groups[indexPath.row]
             if let group = groupsFiltered?[indexPath.row] {
                 //Устанавливаем имя группы в надпись в ячейке
                 cell.config(group: group)
@@ -112,7 +111,7 @@ class MyGroupsController: UITableViewController {
             //Заного нумеруем
             groups = indexation(input: groups)
         }
-    }
+    }*/
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         //Проверяем идентификатор, чтобы убедиться, что это нужный переход
@@ -124,19 +123,17 @@ class MyGroupsController: UITableViewController {
             //Получаем индекс выделенной ячейки
             if let indexPath = allGroupsController.tableView.indexPathForSelectedRow {
                 //Получаем группу по индексу
-                let group = allGroupsController.sectionsList[indexPath.section].groups[indexPath.row]
+                let group = allGroupsController.groupsFinded[indexPath.row]
                 //Проверяем, что такой группы нет
-                if !groups.contains(where: { $0.name == group.name }) {
+                if !(groupsFiltered?.contains(where: { $0.name == group.name }) ?? true) {
                     //Добавляем группу в список выбранных групп
-                    groups.append(group)
-                    groups = indexation(input: groups)
+                    groupsFiltered?.append(group)
                     //Обновляем таблицу
-                    sectionsList = map(input: groups)
                     tableView.reloadData()
                 }
             }
         }
-    }*/
+    }
 }
 
 extension MyGroupsController: UISearchBarDelegate {

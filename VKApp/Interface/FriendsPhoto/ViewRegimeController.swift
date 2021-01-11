@@ -50,6 +50,9 @@ class ViewRegimeController: UIViewController, UIGestureRecognizerDelegate {
                 imageHeight.constant = newHeight
                 view.layoutIfNeeded()
             }
+            
+            likeControl.likesCount = photo.likesCount
+            likeControl.isLiked = (photo.user_likes == 1)
         }
     }
     

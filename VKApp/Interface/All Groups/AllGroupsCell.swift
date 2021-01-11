@@ -20,10 +20,15 @@ class AllGroupsCell: UITableViewCell {
     }
     
     func config(group: RealmGroup) {
+        groupName.text = ""
+        groupAvatar.image = nil
+        
         groupName.text = group.name
-        if let url = URL(string: group.photo_50) {
-            groupAvatar.load(url: url)
-        }
+        groupAvatar.loadImageUsingUrlString(urlString: group.photo_50)
+    }
+    
+    override func prepareForReuse() {
+        groupAvatar.image = nil
     }
     
     @objc

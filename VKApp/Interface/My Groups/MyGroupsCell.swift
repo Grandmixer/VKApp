@@ -20,8 +20,15 @@ class MyGroupsCell: UITableViewCell {
     }
     
     func config(group: RealmGroup) {
+        groupName.text = ""
+        groupAvatar.image = nil
+        
         groupName.text = group.name
         groupAvatar.loadImageUsingUrlString(urlString: group.photo_50)
+    }
+    
+    override func prepareForReuse() {
+        groupAvatar.image = nil
     }
     
     @objc
