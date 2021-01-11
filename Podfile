@@ -6,5 +6,6 @@ target 'VKApp' do
   use_frameworks!
 
   # Pods for VKApp
+  pod 'RealmSwift'
 
 end
