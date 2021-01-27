@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,8 @@
 		FF6AC66D250D7E8000B95C75 /* LoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6AC66C250D7E8000B95C75 /* LoadingAnimation.swift */; };
 		FF6F2D13250646CF003EC1E6 /* AllFriendsCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6F2D12250646CF003EC1E6 /* AllFriendsCellHeader.swift */; };
 		FF70FA7925360BBD00BCA91A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF70FA7825360BBD00BCA91A /* RealmService.swift */; };
+		FF7722B125C083DF00AC8CA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF7722B025C083DF00AC8CA9 /* GoogleService-Info.plist */; };
+		FF7722C325C089A900AC8CA9 /* LoginVKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7722C225C089A900AC8CA9 /* LoginVKViewController.swift */; };
 		FF796A4B255F3D2D00AC0E7A /* ViewRegimeOpenSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF796A4A255F3D2D00AC0E7A /* ViewRegimeOpenSegue.swift */; };
 		FF796A4E255F56F600AC0E7A /* ViewRegimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF796A4D255F56F600AC0E7A /* ViewRegimeController.swift */; };
 		FF7B11B325027D3C00CAE117 /* LikedIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B11B225027D3C00CAE117 /* LikedIt.swift */; };
@@ -81,6 +83,8 @@
 		FF6AC66C250D7E8000B95C75 /* LoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimation.swift; sourceTree = "<group>"; };
 		FF6F2D12250646CF003EC1E6 /* AllFriendsCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsCellHeader.swift; sourceTree = "<group>"; };
 		FF70FA7825360BBD00BCA91A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		FF7722B025C083DF00AC8CA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FF7722C225C089A900AC8CA9 /* LoginVKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVKViewController.swift; sourceTree = "<group>"; };
 		FF796A4A255F3D2D00AC0E7A /* ViewRegimeOpenSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegimeOpenSegue.swift; sourceTree = "<group>"; };
 		FF796A4D255F56F600AC0E7A /* ViewRegimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegimeController.swift; sourceTree = "<group>"; };
 		FF7B11B225027D3C00CAE117 /* LikedIt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedIt.swift; sourceTree = "<group>"; };
@@ -136,7 +140,6 @@
 				9974FFE3E5A046E5CD2590DD /* Pods-VKApp.debug.xcconfig */,
 				1C2B9AEBAD9C63A3C08E0EFC /* Pods-VKApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -172,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				FFF4E36C24F2A99F008310B6 /* LoginViewController.swift */,
+				FF7722C225C089A900AC8CA9 /* LoginVKViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -311,6 +315,7 @@
 				FFF4E36E24F2A99F008310B6 /* Main.storyboard */,
 				FFF4E37324F2A9A2008310B6 /* LaunchScreen.storyboard */,
 				FFD3A4F4252DEBFB00CF1FDE /* LocalDB.xcdatamodeld */,
+				FF7722B025C083DF00AC8CA9 /* GoogleService-Info.plist */,
 			);
 			path = VKApp;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFF4E37524F2A9A2008310B6 /* LaunchScreen.storyboard in Resources */,
+				FF7722B125C083DF00AC8CA9 /* GoogleService-Info.plist in Resources */,
 				FFF4E37224F2A9A2008310B6 /* Assets.xcassets in Resources */,
 				FFF4E37024F2A99F008310B6 /* Main.storyboard in Resources */,
 			);
@@ -486,6 +492,7 @@
 				FFCD295F250F547900C7E83F /* PhotoCell.swift in Sources */,
 				FFEDA13A2573C42E00CA8B44 /* ViewRegimeUnwindSegue.swift in Sources */,
 				FFD3A4F2252DE74C00CF1FDE /* CoreDataStack.swift in Sources */,
+				FF7722C325C089A900AC8CA9 /* LoginVKViewController.swift in Sources */,
 				FF21428724F7CF56000F4ED3 /* AllGroupsCell.swift in Sources */,
 				FF21429124F8134F000F4ED3 /* MyGroupsCell.swift in Sources */,
 				FFEFC7082504004700C95BA5 /* PhotoViewController.swift in Sources */,

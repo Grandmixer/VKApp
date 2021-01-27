@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseAuth
 
 class MyGroupsController: UITableViewController {
     
@@ -132,6 +133,15 @@ class MyGroupsController: UITableViewController {
                     tableView.reloadData()
                 }
             }
+        }
+    }
+    
+    @IBAction func exitButtonAction(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "unwindToLogin", sender: self)
+        } catch (let error) {
+            print("Auth sign out failed: \(error)")
         }
     }
 }

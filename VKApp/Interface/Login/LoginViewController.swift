@@ -7,18 +7,15 @@
 //
 
 import UIKit
-import WebKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var webview: WKWebView! {
-        didSet {
-            webview.navigationDelegate = self
-        }
-    }
+    
+    private var handle: AuthStateDidChangeListenerHandle!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,29 +24,6 @@ class LoginViewController: UIViewController {
         let tapKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         //Присваиваем жест UIScrollView
         scrollView.addGestureRecognizer(tapKeyboardGesture)
-        
-        loadWebView()
-    }
-    
-    func loadWebView() {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "oauth.vk.com"
-        urlComponents.path = "/authorize"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: "7611567"),
-            URLQueryItem(name: "display", value: "mobile"),
-            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: "friends,photos,groups,wall"),
-            URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.126"),
-            URLQueryItem(name: "state", value: "success")
-        ]
-        
-        let request = URLRequest(url: urlComponents.url!)
-        
-        
-        webview.load(request)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +31,14 @@ class LoginViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        self.handle = Auth.auth().addStateDidChangeListener { auth, user in
+            if user != nil {
+                self.performSegue(withIdentifier: "FirebaseLogin", sender: nil)
+                self.loginTextField.text = nil
+                self.passwordTextField.text = nil
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,6 +46,10 @@ class LoginViewController: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        Auth.auth().removeStateDidChangeListener(handle)
     }
     
     @objc
@@ -87,73 +73,66 @@ class LoginViewController: UIViewController {
         scrollView.endEditing(true)
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        //Проверяем данные
-        let checkResult = checkUserData()
+    @IBAction func unwind (_ unwindSegue: UIStoryboardSegue) {
         
-        //Если данные не верны, показываем ошибку
-        if !checkResult {
-            showLoginError()
-        }
-        
-        //Вернем результат
-        return checkResult
     }
     
-    func checkUserData() -> Bool {
+    @IBAction func LoginAction(_ sender: Any) {
         guard
-            let login = loginTextField.text,
-            let password = passwordTextField.text
-            else { return false }
-        
-        if login == "admin" && password == "123" {
-            return true
-        } else {
-            return true
-            //return false
-        }
-    }
-    
-    func showLoginError() {
-        //Создаем контроллер
-        let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль", preferredStyle: .alert)
-        //Создаем кнопку для UIAlertController
-        let action = UIAlertAction(title: "Понятно", style: .default)
-        //Добавляем кнопку на UIAlertController
-        alert.addAction(action)
-        //Показываем UIAlertController
-        present(alert, animated: true)
-    }
-    
-    @IBAction func exitFromNextViewController(unwindSegue: UIStoryboardSegue) {}
-}
-
-extension LoginViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        print(navigationResponse.response.url)
-        guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
-            decisionHandler(.allow)
+            let email = loginTextField.text,
+            let password = passwordTextField.text,
+            email.count > 0,
+            password.count > 5
+        else {
+            let alert = UIAlertController(title: "Ошибка", message: "Логин и пароль введены не верно", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            
             return
         }
         
-        let params = fragment
-            .components(separatedBy: "&")
-            .map { $0.components(separatedBy: "=") }
-            .reduce([String: String]()) { result, param in
-                var dict = result
-                let key = param[0]
-                let value = param[1]
-                dict[key] = value
-                return dict
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
+            if let error = error, user == nil {
+                let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+                
+                self?.present(alert, animated: true)
             }
+        }
+    }
+    
+    @IBAction func SignupAction(_ sender: Any) {
+        let alert = UIAlertController(title: "Регистрация", message: "Регистрация", preferredStyle: .alert)
         
-        if let token = params["access_token"] {
-            let session = Session.instance
-            session.token = token
+        alert.addTextField{ textEmail in
+            textEmail.placeholder = "Введите свой e-mail"
+        }
+        alert.addTextField{ textPassword in
+            textPassword.isSecureTextEntry = true
+            textPassword.placeholder = "Введите пароль"
         }
         
-        decisionHandler(.cancel)
-        performSegue(withIdentifier: "SuccessLogin", sender: self)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        let saveAction = UIAlertAction(title: "Зарегистрироватсья", style: .default) { _ in
+            guard let emailField = alert.textFields?[0],
+                  let passwordField = alert.textFields?[1],
+                  let password = passwordField.text,
+                  let email = emailField.text else { return }
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] user, error in
+                if let error = error {
+                    let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+                    
+                    self?.present(alert, animated: true)
+                } else {
+                    Auth.auth().signIn(withEmail: email, password: password)
+                }
+            }
+        }
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseAuth
 
 class AllFriendsController: UITableViewController {
     
@@ -130,6 +131,15 @@ class AllFriendsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
+    }
+    
+    @IBAction func exitButtonAction(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "unwindToLogin", sender: self)
+        } catch (let error) {
+            print("Auth sign out failed: \(error)")
+        }
     }
 }
 
