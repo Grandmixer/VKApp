@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class NewsController: UITableViewController {
     
@@ -61,5 +62,14 @@ class NewsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return news.count
+    }
+    
+    @IBAction func exitButtonAction(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "unwindToLogin", sender: self)
+        } catch (let error) {
+            print("Auth sign out failed: \(error)")
+        }
     }
 }
