@@ -38,19 +38,21 @@ extension UIImageView {
         activityIndicator.startAnimating()
         activityIndicator.center = self.center
         
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            DispatchQueue.main.async() {
+        DispatchQueue.global().async {
+            URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
                 if let image = UIImage(data: data!) {
                     imageCache.setObject(image, forKey: urlString as NSString)
-                    self.image = image
-                    activityIndicator.removeFromSuperview()
+                    DispatchQueue.main.async() {
+                        self.image = image
+                        activityIndicator.removeFromSuperview()
+                    }
                 }
-            }
-        }).resume()
+            }).resume()
+        }
     }
 }
