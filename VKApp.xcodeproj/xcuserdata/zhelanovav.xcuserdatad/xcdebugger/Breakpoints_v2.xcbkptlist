@@ -968,8 +968,8 @@
             filePath = "VKApp/Services/GroupsService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "loadGroupsList(completion:)"
             landmarkType = "7">
          </BreakpointContent>
