@@ -13,6 +13,7 @@ class PhotoViewController: UIViewController {
     
     var photosService = PhotosService()
     var realmService = RealmService()
+    var photoService: ImageLoadService?
     
     var photos: Results<RealmPhoto>?
     var token: NotificationToken?
@@ -29,6 +30,8 @@ class PhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        photoService = ImageLoadService(container: collectionView)
         
         photosService.loadPhotosList(id: user?.id ?? -1, completion: { [weak self] result in
             //Парсим в объект Realm
@@ -101,7 +104,9 @@ extension PhotoViewController: UICollectionViewDataSource {
             //Получаем объект фотографии для конкретной ячейки
             if let photos = photos {
                 let array = Array(photos)
-                cell.config(photo: array[indexPath.item])
+                //cell.config(photo: array[indexPath.item])
+                cell.imageView.image = nil
+                cell.imageView.image = photoService?.photo(atIndexPath: indexPath, byUrl: array[indexPath.item].photo)
             }
             return cell
         } else {
