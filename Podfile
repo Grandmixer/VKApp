@@ -9,5 +9,6 @@ target 'VKApp' do
   pod 'RealmSwift'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'PromiseKit', '~> 6.8'
 
 end

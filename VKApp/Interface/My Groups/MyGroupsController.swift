@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import PromiseKit
 import FirebaseAuth
 
 class MyGroupsController: UITableViewController {
@@ -26,10 +27,17 @@ class MyGroupsController: UITableViewController {
         
         setupSearchBar()
         
-        groupsService.loadGroupsList(completion: { [weak self] result in
+        /*groupsService.loadGroupsList(completion: { [weak self] result in
             //Сохраняем web модель в базу данных realm
             self?.realmService.saveGroupData(result.response.items)
-        })
+        })*/
+        
+        groupsService.loadGroupsListFuture().get { [weak self] result in
+            self?.realmService.saveGroupData(result.response.items)
+        }
+        
+        //realmService.saveGroupData(groupsService.loadGroupsListFuture())
+        
         pairTableAndRealm()
     }
     
