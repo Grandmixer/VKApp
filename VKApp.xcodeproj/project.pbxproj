@@ -29,6 +29,7 @@
 		FF6AC66D250D7E8000B95C75 /* LoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6AC66C250D7E8000B95C75 /* LoadingAnimation.swift */; };
 		FF6F2D13250646CF003EC1E6 /* AllFriendsCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6F2D12250646CF003EC1E6 /* AllFriendsCellHeader.swift */; };
 		FF70FA7925360BBD00BCA91A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF70FA7825360BBD00BCA91A /* RealmService.swift */; };
+		FF7277A125EA93D100316F44 /* ImageLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7277A025EA93D100316F44 /* ImageLoadService.swift */; };
 		FF7722B125C083DF00AC8CA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF7722B025C083DF00AC8CA9 /* GoogleService-Info.plist */; };
 		FF7722C325C089A900AC8CA9 /* LoginVKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7722C225C089A900AC8CA9 /* LoginVKViewController.swift */; };
 		FF796A4B255F3D2D00AC0E7A /* ViewRegimeOpenSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF796A4A255F3D2D00AC0E7A /* ViewRegimeOpenSegue.swift */; };
@@ -87,6 +88,7 @@
 		FF6AC66C250D7E8000B95C75 /* LoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimation.swift; sourceTree = "<group>"; };
 		FF6F2D12250646CF003EC1E6 /* AllFriendsCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsCellHeader.swift; sourceTree = "<group>"; };
 		FF70FA7825360BBD00BCA91A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		FF7277A025EA93D100316F44 /* ImageLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadService.swift; sourceTree = "<group>"; };
 		FF7722B025C083DF00AC8CA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF7722C225C089A900AC8CA9 /* LoginVKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVKViewController.swift; sourceTree = "<group>"; };
 		FF796A4A255F3D2D00AC0E7A /* ViewRegimeOpenSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegimeOpenSegue.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				FFABE0AB25E81EE30030E50F /* GetDataOperation.swift */,
 				FFB18DF225E8400000D3A932 /* ParseDataOperation.swift */,
 				FFB18DF525E842BC00D3A932 /* SaveDataOperation.swift */,
+				FF7277A025EA93D100316F44 /* ImageLoadService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				FFCD29672511503500C7E83F /* CustomInteractiveTransition.swift in Sources */,
 				FFD3A4FA252DECB700CF1FDE /* User+CoreDataClass.swift in Sources */,
 				FF4B097F2518CBC8008CB18B /* Group.swift in Sources */,
+				FF7277A125EA93D100316F44 /* ImageLoadService.swift in Sources */,
 				FF4EEE952513AC4B00E1D814 /* Photo.swift in Sources */,
 				FFD3A4F6252DEBFB00CF1FDE /* LocalDB.xcdatamodeld in Sources */,
 				FFB18DF325E8400000D3A932 /* ParseDataOperation.swift in Sources */,
