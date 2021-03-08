@@ -34,6 +34,10 @@
 		FF796A4B255F3D2D00AC0E7A /* ViewRegimeOpenSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF796A4A255F3D2D00AC0E7A /* ViewRegimeOpenSegue.swift */; };
 		FF796A4E255F56F600AC0E7A /* ViewRegimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF796A4D255F56F600AC0E7A /* ViewRegimeController.swift */; };
 		FF7B11B325027D3C00CAE117 /* LikedIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B11B225027D3C00CAE117 /* LikedIt.swift */; };
+		FFABE0A925E81D520030E50F /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFABE0A825E81D520030E50F /* AsyncOperation.swift */; };
+		FFABE0AC25E81EE30030E50F /* GetDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFABE0AB25E81EE30030E50F /* GetDataOperation.swift */; };
+		FFB18DF325E8400000D3A932 /* ParseDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB18DF225E8400000D3A932 /* ParseDataOperation.swift */; };
+		FFB18DF625E842BC00D3A932 /* SaveDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB18DF525E842BC00D3A932 /* SaveDataOperation.swift */; };
 		FFCD295F250F547900C7E83F /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD295E250F547900C7E83F /* PhotoCell.swift */; };
 		FFCD29612510E1D300C7E83F /* CustomPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD29602510E1D300C7E83F /* CustomPushAnimator.swift */; };
 		FFCD29632510EC9C00C7E83F /* CustomPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCD29622510EC9C00C7E83F /* CustomPopAnimator.swift */; };
@@ -88,6 +92,10 @@
 		FF796A4A255F3D2D00AC0E7A /* ViewRegimeOpenSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegimeOpenSegue.swift; sourceTree = "<group>"; };
 		FF796A4D255F56F600AC0E7A /* ViewRegimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegimeController.swift; sourceTree = "<group>"; };
 		FF7B11B225027D3C00CAE117 /* LikedIt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedIt.swift; sourceTree = "<group>"; };
+		FFABE0A825E81D520030E50F /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		FFABE0AB25E81EE30030E50F /* GetDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataOperation.swift; sourceTree = "<group>"; };
+		FFB18DF225E8400000D3A932 /* ParseDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDataOperation.swift; sourceTree = "<group>"; };
+		FFB18DF525E842BC00D3A932 /* SaveDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataOperation.swift; sourceTree = "<group>"; };
 		FFCD295E250F547900C7E83F /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		FFCD29602510E1D300C7E83F /* CustomPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPushAnimator.swift; sourceTree = "<group>"; };
 		FFCD29622510EC9C00C7E83F /* CustomPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopAnimator.swift; sourceTree = "<group>"; };
@@ -333,6 +341,10 @@
 				FFCDB40225874CFD006B92C2 /* ImageViewLoadExtension.swift */,
 				FFD3A4F1252DE74C00CF1FDE /* CoreDataStack.swift */,
 				FF5EEF53251DF7DD006269BB /* Session.swift */,
+				FFABE0A825E81D520030E50F /* AsyncOperation.swift */,
+				FFABE0AB25E81EE30030E50F /* GetDataOperation.swift */,
+				FFB18DF225E8400000D3A932 /* ParseDataOperation.swift */,
+				FFB18DF525E842BC00D3A932 /* SaveDataOperation.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -455,6 +467,7 @@
 			files = (
 				FF21428524F7CF38000F4ED3 /* AllGroupsController.swift in Sources */,
 				FF5EEF54251DF7DD006269BB /* Session.swift in Sources */,
+				FFABE0AC25E81EE30030E50F /* GetDataOperation.swift in Sources */,
 				FF4F034225023CAE0022F310 /* AvatarView.swift in Sources */,
 				FFD3A500252DED8000CF1FDE /* LocalDataBaseService.swift in Sources */,
 				FF6F2D13250646CF003EC1E6 /* AllFriendsCellHeader.swift in Sources */,
@@ -471,6 +484,7 @@
 				FF4B097F2518CBC8008CB18B /* Group.swift in Sources */,
 				FF4EEE952513AC4B00E1D814 /* Photo.swift in Sources */,
 				FFD3A4F6252DEBFB00CF1FDE /* LocalDB.xcdatamodeld in Sources */,
+				FFB18DF325E8400000D3A932 /* ParseDataOperation.swift in Sources */,
 				FF63784124F6F38700838F45 /* AllFriendsController.swift in Sources */,
 				FFCDB40325874CFD006B92C2 /* ImageViewLoadExtension.swift in Sources */,
 				FF30054C250AD46700B19AB2 /* NewsController.swift in Sources */,
@@ -479,6 +493,7 @@
 				FF7B11B325027D3C00CAE117 /* LikedIt.swift in Sources */,
 				FF3EAFB4258E23B3001F3603 /* NewsService.swift in Sources */,
 				FF21428F24F8131C000F4ED3 /* MyGroupsController.swift in Sources */,
+				FFB18DF625E842BC00D3A932 /* SaveDataOperation.swift in Sources */,
 				FF3EAFB7258E2DC0001F3603 /* News.swift in Sources */,
 				FF242A8625077BC100116C38 /* User.swift in Sources */,
 				FF796A4E255F56F600AC0E7A /* ViewRegimeController.swift in Sources */,
@@ -496,6 +511,7 @@
 				FF21428724F7CF56000F4ED3 /* AllGroupsCell.swift in Sources */,
 				FF21429124F8134F000F4ED3 /* MyGroupsCell.swift in Sources */,
 				FFEFC7082504004700C95BA5 /* PhotoViewController.swift in Sources */,
+				FFABE0A925E81D520030E50F /* AsyncOperation.swift in Sources */,
 				FFF6328425221464001CF164 /* GroupsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

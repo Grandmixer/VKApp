@@ -29,10 +29,13 @@ class AllFriendsController: UITableViewController {
         
         setupSearchBar()
         
-        friendsService.loadFriendsList(completion: { [weak self] result in
+        /*friendsService.loadFriendsList(completion: { [weak self] result in
             //Сохраняем web модель в базу данных realm
             self?.realmService.saveUserData(result.response.items)
-        })
+        })*/
+        
+        friendsService.loadFriendListOp()
+        
         pairTableAndRealm()
     }
     
