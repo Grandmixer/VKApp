@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -15,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    private var handle: AuthStateDidChangeListenerHandle!
+    var firebaseAuthService = FirebaseAuthService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +31,13 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        self.handle = Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.performSegue(withIdentifier: "FirebaseLogin", sender: nil)
-                self.loginTextField.text = nil
-                self.passwordTextField.text = nil
+        firebaseAuthService.setListener(triggered: { [weak self] str in
+            if let flag = str, flag == "success" {
+                self?.performSegue(withIdentifier: "FirebaseLogin", sender: nil)
+                self?.loginTextField.text = nil
+                self?.passwordTextField.text = nil
             }
-        }
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,7 +48,7 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        Auth.auth().removeStateDidChangeListener(handle)
+        firebaseAuthService.removeListener()
     }
     
     @objc
@@ -80,25 +79,19 @@ class LoginViewController: UIViewController {
     @IBAction func LoginAction(_ sender: Any) {
         guard
             let email = loginTextField.text,
-            let password = passwordTextField.text,
-            email.count > 0,
-            password.count > 5
-        else {
-            let alert = UIAlertController(title: "Ошибка", message: "Логин и пароль введены не верно", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-            
-            return
-        }
+            let password = passwordTextField.text
+        else { return }
         
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
-            if let error = error, user == nil {
-                let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+        firebaseAuthService.signIn(email: email, password: password, completion: { [weak self] str in
+            if let errStr = str {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Ошибка", message: errStr, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
                 
-                self?.present(alert, animated: true)
+                    self?.present(alert, animated: false, completion: nil)
+                }
             }
-        }
+        })
     }
     
     @IBAction func SignupAction(_ sender: Any) {
@@ -113,21 +106,22 @@ class LoginViewController: UIViewController {
         }
         
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
-        let saveAction = UIAlertAction(title: "Зарегистрироватсья", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Зарегистрироватсья", style: .default) { [weak self] _ in
             guard let emailField = alert.textFields?[0],
                   let passwordField = alert.textFields?[1],
                   let password = passwordField.text,
                   let email = emailField.text else { return }
-            Auth.auth().createUser(withEmail: email, password: password) { [weak self] user, error in
-                if let error = error {
-                    let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
-                    
-                    self?.present(alert, animated: true)
-                } else {
-                    Auth.auth().signIn(withEmail: email, password: password)
+            
+            self?.firebaseAuthService.signUp(email: email, password: password, completion: { str in
+                if let errStr = str {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Ошибка", message: errStr, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+                        
+                        self?.present(alert, animated: true)
+                    }
                 }
-            }
+            })
         }
         
         alert.addAction(saveAction)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8711E7D11D38559F51970BFB /* Pods_VKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86842649F79273CBE74A83CB /* Pods_VKApp.framework */; };
+		FF1FC68C25ED598D00A5BD19 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FC68B25ED598D00A5BD19 /* FirebaseAuthService.swift */; };
 		FF21428524F7CF38000F4ED3 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21428424F7CF38000F4ED3 /* AllGroupsController.swift */; };
 		FF21428724F7CF56000F4ED3 /* AllGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21428624F7CF56000F4ED3 /* AllGroupsCell.swift */; };
 		FF21428F24F8131C000F4ED3 /* MyGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21428E24F8131C000F4ED3 /* MyGroupsController.swift */; };
@@ -67,6 +68,7 @@
 		1C2B9AEBAD9C63A3C08E0EFC /* Pods-VKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKApp.release.xcconfig"; path = "Target Support Files/Pods-VKApp/Pods-VKApp.release.xcconfig"; sourceTree = "<group>"; };
 		86842649F79273CBE74A83CB /* Pods_VKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9974FFE3E5A046E5CD2590DD /* Pods-VKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKApp.debug.xcconfig"; path = "Target Support Files/Pods-VKApp/Pods-VKApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FF1FC68B25ED598D00A5BD19 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		FF21428424F7CF38000F4ED3 /* AllGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
 		FF21428624F7CF56000F4ED3 /* AllGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsCell.swift; sourceTree = "<group>"; };
 		FF21428E24F8131C000F4ED3 /* MyGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsController.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				FFB18DF225E8400000D3A932 /* ParseDataOperation.swift */,
 				FFB18DF525E842BC00D3A932 /* SaveDataOperation.swift */,
 				FF7277A025EA93D100316F44 /* ImageLoadService.swift */,
+				FF1FC68B25ED598D00A5BD19 /* FirebaseAuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				FF7277A125EA93D100316F44 /* ImageLoadService.swift in Sources */,
 				FF4EEE952513AC4B00E1D814 /* Photo.swift in Sources */,
 				FFD3A4F6252DEBFB00CF1FDE /* LocalDB.xcdatamodeld in Sources */,
+				FF1FC68C25ED598D00A5BD19 /* FirebaseAuthService.swift in Sources */,
 				FFB18DF325E8400000D3A932 /* ParseDataOperation.swift in Sources */,
 				FF63784124F6F38700838F45 /* AllFriendsController.swift in Sources */,
 				FFCDB40325874CFD006B92C2 /* ImageViewLoadExtension.swift in Sources */,

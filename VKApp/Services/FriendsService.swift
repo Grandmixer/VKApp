@@ -62,9 +62,6 @@ class FriendsService: JsonService {
         let queue = OperationQueue()
         
         let getData = GetDataOperation(session: session, url: urlConstructor.url!)
-        getData.completionBlock = {
-            print(getData.data)
-        }
         queue.addOperation(getData)
         
         let parseData = ParseDataOperation()
