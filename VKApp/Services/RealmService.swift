@@ -23,7 +23,6 @@ class RealmService {
             realm.add(users)
             
             try realm.commitWrite()
-            print(realm.configuration.fileURL)
         } catch {
             print(error)
         }
@@ -41,7 +40,6 @@ class RealmService {
             realm.add(groups)
             
             try realm.commitWrite()
-            print(realm.configuration.fileURL)
         } catch {
             print(error)
         }
