@@ -45,12 +45,12 @@ class AllFriendsController: UITableViewController {
             //Для этой страницы только обновляем
             switch changes {
             case .initial:
-                //tableView.reloadData()
                 if let users = self?.users {
                     self?.sectionsList = self?.map(input: Array(users)) ?? []
                 } else {
                     self?.sectionsList = []
                 }
+                tableView.reloadData()
             case .update:
                 if let users = self?.users {
                     self?.sectionsList = self?.map(input: Array(users)) ?? []
