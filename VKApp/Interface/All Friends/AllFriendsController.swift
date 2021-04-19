@@ -38,11 +38,6 @@ class AllFriendsController: UITableViewController {
         guard let realm = try? Realm() else { return }
         
         users = realm.objects(RealmUser.self)
-        if let users = users {
-            sectionsList = map(input: Array(users))
-        } else {
-            sectionsList = []
-        }
         
         token = users?.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
@@ -50,7 +45,12 @@ class AllFriendsController: UITableViewController {
             //Для этой страницы только обновляем
             switch changes {
             case .initial:
-                tableView.reloadData()
+                //tableView.reloadData()
+                if let users = self?.users {
+                    self?.sectionsList = self?.map(input: Array(users)) ?? []
+                } else {
+                    self?.sectionsList = []
+                }
             case .update:
                 if let users = self?.users {
                     self?.sectionsList = self?.map(input: Array(users)) ?? []
